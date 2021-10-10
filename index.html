@@ -8,8 +8,30 @@
   <title>Blackjack</title>
 </head>
 <body>
-  <h1 id="test-css">PP2: A simple Blackjack game</h1>
+  <header>
+    <h1>PP2: Blackjack</h1>
+  </header>
   
+  <div id="outer-container" class="flex-row">
+    <div id="lhs-container" class="flex-col flex-jc-fe">
+      <div id="player-pot"></div>
+    </div>
+    <div id="centre-container" class="flex-col flex-jc-sb">
+      <div id="dealer-section" class="flex-row"></div>
+      <div id="status-section" class="flex-row"></div>
+      <div id="player-section" class="flex-row"></div>
+      <div id="controls-section" class="felx-row"></div>
+    </div>
+    <div id="rhs-container" class="flex-col flex-jc-sb">
+      <div id="dealer-score"></div>
+      <div id="player-score"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="flex-row">
+    <p>Copyright &copy; 2021 David Watters</p>
+  </footer>
   <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -1,3 +1,6 @@
+/* 
+  Generic styling
+*/
 * {
   margin: 0;
   padding: 0;
@@ -5,15 +8,116 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Initialise gloabl var for background colour  */
+  --bg-colour: #076314;
+}
+
 html {
   /* Set root font-size to 10px so that 1rem becomes 10px  */
-  font-size: 62.5%
+  font-size: 62.5%;
 }
 
 body {
-  font-size: 1.6rem
+  font-size: 1.6rem;
+  background-color: var(--bg-colour);
 }
 
-#test-css {
-  background-color: lightgrey;
+footer {
+  height: 4rem;
+  align-items: center;
+}
+
+/* 
+  Main game area containers
+*/
+#outer-container {
+  width: 100%;
+  height: 90vh;
+}
+
+#lhs-container {
+  width: 20%;
+}
+
+#centre-container {
+  /* width: 20rem; */
+  width: 60%;
+}
+
+#rhs-container {
+  width: 20%
+}
+
+#dealer-section {
+  background-color: darkblue;
+  height: 30%;
+  width: 100%;
+}
+
+#status-section {
+  background-color: darkcyan;
+  height: 20%;
+  width: 100%;
+}
+
+#player-section {
+  background-color: darkred;
+  height: 30%;
+  width: 100%;
+}
+
+#controls-section {
+  background-color: darkgoldenrod;
+  height: 10%;
+  width: 100%;
+}
+
+#player-pot {
+  background-color: darkorchid;
+  height: 60%;
+}
+
+#dealer-score {
+  background-color: dimgray;
+  height: 10%;
+}
+
+#player-score {
+  background-color: salmon;
+  height: 10%;
+}
+
+/* 
+  Flexbox styles for row & column
+*/
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.flex-jc-fe {
+  justify-content: flex-end;
+}
+
+.flex-jc-sb {
+  justify-content: space-between;
+}
+
+/* 
+  Plaing cards
+*/
+.playing-card {
+  height: 6rem;
+  width: 4rem;
+  background-color: white;
+  color: black;
+  font-size: 2rem;
 }
