@@ -1,108 +1,219 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Blackjack
 
-Welcome davewatters,
+## A Simple Blackjack Game written in JavaScript
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+You can view the Blackjack live site [HERE.](https://davewatters.github.io/blackjack)
+<br />
+<br />
+<!-- Responsive desgin sample image from http://ami.responsivedesign.is/ -->
+#_TODO: Responsive desgin sample image from http://ami.responsivedesign.is/
+<h2 align="center"><img src="docs/ci-pp2-blackjack-responsive-mockup.png"></h2>
 
-## Gitpod Reminders
+## - Table of Contents -
+* [Purpose](#purpose)
+* [User Experience Design (UX)](#user-experience-design)
+* [Features](#features)
+* [Technologies](#technologies)
+* [Testing](#testing)
+* [Deployment](#deployment)
+* [Credits](#credits)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## - Purpose -
+[ This website was created as the second Portfolio Project (PP2) for the Code Institute's Full Stack Web Development course. ]
 
-`python3 -m http.server`
+The site was built as a simple Blackjack game to be played just for fun. 
 
-A blue button should appear to click: _Make Public_,
+## - User Experience Design -
 
-Another blue button should appear to click: _Open Browser_.
+-   ### User stories
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+    -   ### Design Strategy Goals
+        -    Create a simple onine Blackjack card game
+        -    Site must be intuitive to read & navigate on both desktop & mobile devices
 
-A blue button should appear to click: _Make Public_,
+    -   ### Design Scope to Deliver MVP
+    #_TODO
 
-Another blue button should appear to click: _Open Browser_.
+    
+        -   #### First Time Visitor Goals
+            As a first time user...
+            -   I want to easily understand the main purpose of the site and learn more about the organisation
+            -   I want to be able to easily navigate throughout the site to find content
+            -   I want to find their social media links to follow event news
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+        -   #### Returning Visitor Goals
+            As a returning visitor...
+            -   I want to be able to easily register my interest in attending an event
+            -   I want to find the best way to get in contact with the organisers with any questions or suggestions I may have
+            -   I want to be able to view the site clearly on a mobile device
 
-To log into the Heroku toolbelt CLI:
+        -   #### Frequent User Goals
+            As a frequent user...
+            -   I want to to see if there are any new events happening
+            -   I want to to see if there are any updates on a forthcoming event
+            -   I want to see any new photos or videos of previous events or related acitivites
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+-   ### Design
+    -   #### Layout
+        #_TODO  
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+    -   #### Colour Scheme
+        The default background was chosen to resemble a casino card table's green baize. The colour scheme then had to work and contrast with that. 
+        <!--- all of which have 'AAA' WCAG 2.0 contrast scores when used as text on the green background (i.e in the header & footer). The results of the colour contrast testing are included in the [Testing](#testing) section below.
+        --->
 
-------
+        - Colour choices
+            - Card Table green, #076324
 
-## Release History
+        - How colours were used
+            - Body: White
+            - Header: Green 
+            - Footer: Green
+            - Content text: Green on White or White on Green, as applicable
+            - Highlights (Active/Selected/Border): Yellow
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+    -   #### Typography
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+    -   #### Imagery
+    
+    -   #### Wireframes
+        I did not create wireframes with software like Balsamiq, but I have decided to include pictures of my pencil sketches of my layout design process.  These do not necessarily represent the final look of the site pages, but are presented here to show how I went about fleshing out my initial thoughts and ideas about how to structure the site before a line of code was written.
+<h2 align="center"><img src="docs/wf-main-screen-mobile.jpg"></h2>
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## - Features -
+To fulfil the needs of the site owner and its users, the following features were implemented:
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+#_TODO
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+-   **Navigation Bar** contains the site name/logo and links to the Home, Events and SingUp pages. It is identical on, and positioned at, the top of all pages. It is fully responsive on different device sizes. The currently selected page is indicated with a bright yellow underline and the items change colour when the mouse hovers over them to give the user immediate visual feedback.
+    -   This allows the user to navigate intuitively between the site's pages
+<h2 align="center"><img src="docs/header-wide.png"></h2>
+<h2 align="center"><img src="docs/header-mobile.png"></h2>
+   
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+## - Future Features -
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+<!--  -->
+<!-- End Features -->
+<!--  -->
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## - Technologies Used -
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### Languages Used
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### Frameworks, Libraries & Programs Used
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+1. [Git](https://git-scm.com/)
+    - Git was used for version control and managed via the VSCode terminal to commit to Git and Push to GitHub.
+1. [GitHub:](https://github.com/)
+    - GitHub is used to store the project's code after being pushed from Git, and Github Pages used to deploy the live site
+1. [Google Fonts:](https://fonts.google.com/)
+    - Google font 'Raleway' was imported in the style.css file and used throughout the site.
+1. [Font Awesome:](https://fontawesome.com/)
+    - Font Awesome was used to add icons for aesthetic and UX purposes.
+1. [Gimp:](https://www.gimp.org/)
+    - Gimp was used to edit and retouch photos for the website.
+1. [Birme:](https://www.birme.net/)
+    - birme.net was used to resize images.
+1. [TinyPNG:](https://tinypng.com/)
+    - tinypng.com was used to compress large images
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## - Testing -
+### UX Goals, User Stories
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+-- #_TODO: All of the followig to be changed and made relevant 
 
-------
+-   #### As a first time user...
+    -  I want to easily understand the main purpose of the site and learn more about the organisation
+        -   The main landing page was checked to ensure it explains the purpose of the allows the visitor to explore for more information 
+    -  I want to be able to easily navigate throughout the site to find content
+        - The navigation links were checked on each page to ensure that they take the user to the intended page or section and there were no broken links 
+    -  I want to find their social media links to connect and follow event news
+        - Each page was checked to confirm that the footer contained the same links and that they would open the event's page on the correct media platform in a new browser window.
 
-## FAQ about the uptime script
+-   #### As a returning visitor...
+    -  I want to be able to easily register my interest in attending an event
+        -   The signup registration form was tested to ensure that the user could complete and submit it in a few easy steps. It was also tested to ensure the user could not submit with out filling in the three required contact fields. 
+    -  I want to find the best way to get in contact with the organisers with any questions or suggestions I may have
+        -   The signup/feedback form was tested to ensure that the user could submit a custom message
+    -  I want to be able to view the site clearly on a mobile device
+        -   Testing was done to ensure that the site was responsive on all device screen sizes and that the information was clear and accesible.
 
-**Why have you added this script?**
+-   #### As a frequent user...
+    -  I want to to see if there are any new events happening
+        -   I tested to ensure that upcoming event news was shown on the events page
+    -  I want to to see if there are any updates on a forthcoming event
+        -   I tested to ensure that updates on upcoming events was shown on the events page
+    -  I want to see any new photos or videos of previous events or realted acitivites
+        -   I tested to ensure photos and videos of previous events was present on the events page. Video playback was tested.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Code Validation
+The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri) and [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) services were used to validate every page of the project for syntax errors. **NOTE: All validation was re-run after fixing any errors shown below to ensure that no further errors or warnings existed.**
 
-**How will this affect me?**
+- #_TODO: JSHint validation
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+-   style.css: two stray commas were found and deleted
+<h2 align="center"><img src="docs/w3c-validator-css-style.png"></h2>
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+### Responsiveness
+- Chrome DevTools and a Chrome extension, [Unicorn Revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB), were used to check responsiveness on various device sizes. 
+<h2 align="center"><img src="docs/testing-responsive-320.png"></h2>
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### Colour Scheme
+The colour scheme was tested using this [Contrast Grid Test](https://contrast-grid.eightshapes.com)
+and, as explained previously in the Design - [Colour Scheme](#colour-scheme) section, my decision was based on the results shown here:
+<h2 align="center"><img src="docs/contrast-grid.png"></h2>
 
-**So….?**
+-   The Website was tested on Firefox, Safari, Chrome and Edge browsers.
+-   The website was viewed on a variety of mobile devices such as iPhone7, iPhone 8 & iPhoneX.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+### Further Testing
+Googe Lighthouse in Chrome DevTools was used after deployment to test the quality and performance of the site.  Initial results were 
+<h2 align="center"><img src="docs/google-lighthouse-audit.png"></h2>
 
-**Can I opt out?**
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+### Bugs
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+1.  
+<!---  --->
+<!--- end of testing section --->
+<!---  --->
 
-**Anything more?**
+## - Deployment -
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+### GitHub Pages
+The live deployed site can be viewed on GitHub Pages [HERE](https://davewatters.github.io/blackjack)
 
----
+The Project repository (repo) is at [https://github.com/davewatters/blackjack](https://github.com/davewatters/blackjack)
 
-Happy coding!
+Note: The project repo was initially generated from the [Code Institute full template](https://github.com/Code-Institute-Org/gitpod-full-template) 
+
+Deployment of the site to GitHub Pages was done as follows:
+
+After final `git push` to the project repo 
+1.  Login to your GitHub account
+1.  Open the project repo 
+1.  Select the 'Settings' tab
+1.  On the left-hand-side menu select the Pages option
+1.  Select the main branch as the source, then click the save button
+1.  A message will confirm that the site has been published at `https://YOUR-GITHUB-NAME.github.io/REPO-NAME/`
+1.  Test that the site has successfully gone live live by clicking on the link
+
+#_TODO: Add a How to Fork
+
+## - Credits -
+
+### Code
+### Content
+
+### Acknowledgements
+
+-   My mentor [Daisy McGirr](https://github.com/Daisy-McG) for all her helpful feedback and knowledge.
+-   The Code Institute community on Slack and the CI staff and students
+
