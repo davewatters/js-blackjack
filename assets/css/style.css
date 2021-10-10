@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+html {
+  /* Set root font-size to 10px so that 1rem becomes 10px  */
+  font-size: 62.5%
+}
+
+body {
+  font-size: 1.6rem
+}
+
+#test-css {
+  background-color: lightgrey;
+}
