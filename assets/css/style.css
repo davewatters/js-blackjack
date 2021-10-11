@@ -75,17 +75,17 @@ footer {
 
 #player-pot {
   background-color: darkorchid;
-  height: 60%;
+  height: 50%;
 }
 
 #dealer-score {
   background-color: dimgray;
-  height: 10%;
+  height: 30%;
 }
 
 #player-score {
   background-color: salmon;
-  height: 10%;
+  height: 30%;
 }
 
 /* 
@@ -112,7 +112,7 @@ footer {
 }
 
 /* 
-  Plaing cards
+  Playing cards
 */
 .playing-card {
   height: 6rem;
