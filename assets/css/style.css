@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
 /* 
   Generic styling
 */
@@ -19,13 +21,58 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
   background-color: var(--bg-colour);
+  font-size: 1.6rem;
+  font-family: 'Abril Fatface', cursive;
+}
+
+h1 {
+  color: black;
+  text-shadow: white 0px 0px 3px; /* color offset-x offset-y blur-radius */
+  text-align: center;
 }
 
 footer {
   height: 4rem;
   align-items: center;
+}
+
+.btn {
+  background-color: yellow;
+  border: 2px solid black;
+  border-radius: 2px; 
+  height: 3rem;
+  width: 7rem;
+  text-align: center;
+}
+
+#btn-hit {
+  /* display: none; */
+}
+
+#btn-deal {
+  display: none;
+}
+
+#btn-stay {
+  /* display: none; */
+}
+
+/* 
+* Global colour styles
+*/
+.score-colour {
+  font-size: x-large;
+  color: white;
+  text-shadow: black 0px 0px 3px; /* color offset-x offset-y blur-radius */
+}
+
+.msg-text {
+  font-size: x-large;
+  color: white;
+  text-shadow: black 0px 0px 3px; /* color offset-x offset-y blur-radius */  
+  /* color: #fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; */
 }
 
 /* 
@@ -50,57 +97,64 @@ footer {
 }
 
 #dealer-section {
-  background-color: darkblue;
+  border: 1px solid black; /* temp */
   height: 30%;
   width: 100%;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 #status-section {
-  background-color: darkcyan;
+  border: 1px solid black; /* temp */
   height: 20%;
   width: 100%;
 }
 
 #player-section {
-  background-color: darkred;
+  border: 1px solid black;
   height: 30%;
   width: 100%;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 #controls-section {
-  background-color: darkgoldenrod;
   height: 10%;
   width: 100%;
 }
 
 #player-pot {
-  background-color: darkorchid;
   height: 50%;
 }
 
 #dealer-score {
-  background-color: dimgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 30%;
 }
 
 #player-score {
-  background-color: salmon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 30%;
 }
 
 /* 
-  Flexbox styles for row & column
+  Flexbox container styles for row & column
 */
 .flex-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  /* align-items: center; */
 }
 
 .flex-col {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
 }
 
 .flex-jc-fe {
@@ -111,13 +165,54 @@ footer {
   justify-content: space-between;
 }
 
+.flex-ai-c {
+  align-items: center;
+}
+
 /* 
-  Playing cards
+  Playing card styling
 */
 .playing-card {
-  height: 6rem;
-  width: 4rem;
+  height: 9rem;
+  width: 6rem;
   background-color: white;
+  border: 1px solid black;
+  border-radius: 3px;
   color: black;
   font-size: 2rem;
+}
+
+.red-suit {
+  color: red;
+}
+
+.black-suit {
+  color: black;
+}
+
+/* 
+  Chip styling
+*/
+.chip {
+  background-color: white;
+  border: 8px solid;
+  border-radius: 50%; 
+  height: 5rem;
+  width: 5rem;
+  text-align: center;
+  margin: 4px;
+}
+
+.chip-10 {
+  border-color: blue;
+}
+.chip-20 {
+  border-color: grey;
+}
+
+.chip-50 {
+  border-color: orange;
+}
+.chip-100 {
+  border-color: black;
 }
