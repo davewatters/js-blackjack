@@ -40,9 +40,11 @@ footer {
 .btn {
   background-color: yellow;
   border: 2px solid black;
-  border-radius: 2px; 
-  height: 3rem;
-  width: 7rem;
+  border-radius: 2px;
+  font-family: inherit;
+  height: 4rem;
+  padding: 0px 20px;
+  min-width: 8rem;
   text-align: center;
 }
 
@@ -172,7 +174,7 @@ footer {
 /* 
   Playing card styling
 */
-.playing-card {
+.card {
   height: 9rem;
   width: 6rem;
   background-color: white;
@@ -196,11 +198,11 @@ footer {
 .chip {
   background-color: white;
   border: 8px solid;
-  border-radius: 50%; 
+  border-radius: 50%;
   height: 5rem;
-  width: 5rem;
-  text-align: center;
   margin: 4px;
+  text-align: center;
+  width: 5rem;
 }
 
 .chip-10 {
