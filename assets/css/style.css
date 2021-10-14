@@ -52,15 +52,15 @@ footer {
 }
 
 #btn-hit {
-  /* display: none; */
-}
-
-#btn-deal {
   display: none;
 }
 
-#btn-stay {
+#btn-deal {
   /* display: none; */
+}
+
+#btn-stay {
+  display: none;
 }
 
 /* 

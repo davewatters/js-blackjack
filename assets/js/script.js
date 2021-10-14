@@ -18,7 +18,7 @@ const dealer = {
   id: 0,
   hand: [],
   score: 0,
-}
+};
 
 // Initialise default vars
 let numDecks = 1;
@@ -81,8 +81,8 @@ function shuffleDeck(deck) {
 /**
  * Deals a single card to hand of player.
  * pObj will be the dealer or player object.
- * Dealer's first & third cards affect card 
- * display & score display
+ * Dealer's first & third cards affect 
+ * card & score display.
  */
 function dealCard(pObj) {
   let newCard = deck.pop();
@@ -92,40 +92,60 @@ function dealCard(pObj) {
   // create a div with class "card"
   let cardDiv = document.createElement("div");
   cardDiv.innerHTML = '<p class="card-rank">'+newCard.rank+'</p>' +'<p class="suit-big">'+newCard.suit+'</p>';
-  let att = document.createAttribute("class");
-  att.value = "card";
+  let cardClass = "card";
   if ((newCard.suit === '&hearts;') || (newCard.suit === '&diams;')) {
-    att.value += " red-suit";
+    cardClass += " red-suit";
   }
+  cardDiv.setAttribute("class", cardClass);
 
-  // Display updated score & add card to relevent screen section
+  // Display updated score & card to relevent screen section
   // pObj.id of 0 will always be the dealer
   if (pObj.id) {
     // Player
     document.getElementById('player-score').innerHTML = pObj.score;
-    let el = document.getElementById('player-section').appendChild(cardDiv);
-    el.setAttributeNode(att);
+    document.getElementById('player-section').appendChild(cardDiv);
   } else {
     // Dealer
-    document.getElementById('dealer-score').innerHTML = pObj.score;
-    let el = document.getElementById('dealer-section').appendChild(cardDiv);
+    document.getElementById('dealer-section').appendChild(cardDiv);
+    
     let numCards = document.getElementById('dealer-section').childElementCount;
-    // Dealer's first card is always face down so we show back of card only
-    // by targetting with a different class
-    if (numCards === 1) {
-      att.value = "card-back";
+    // Dealer's second card is always face down so we show only back
+    // of card by targetting with a different class.
+    // Dealer's points score is not made visible
+    if (numCards === 2) {
+      cardClass = "card-back";
     }
-    el.setAttributeNode(att);
+    
+    cardDiv.setAttribute("class", cardClass);
+    
+    if (numCards === 1 || numCards > 2) {
+      if (numCards === 3) {
+        turnDealerCard(pObj.hand);
+      }
+      
+      document.getElementById('dealer-score').innerHTML = pObj.score;
+    }
   }
 }
 
+/**
+ * Turns the dealer's second card face up
+ * when dealer is dealt third card
+ */
+function turnDealerCard(hand) {
+  let cardClass = "card";
+  if ((hand[1].suit === '&hearts;') || (hand[1].suit === '&diams;')) {
+    cardClass += " red-suit";
+  }
+  let el = document.getElementById('dealer-section').children[1];
+  el.setAttribute("class", cardClass);
+}
 
 //-----
 //  Run the game
 //
 createDeck();
-
 shuffleDeck(deck);
 dealHands();
 
-dealCard(player);
+
