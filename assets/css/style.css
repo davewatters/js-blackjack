@@ -15,7 +15,7 @@
   /* background colour */
   --bg-colour: #076314;
   /* playing card reverse */
-  --card-back--colour: blue;
+  --card-back-colour: rgb(0, 0, 255);
 }
 
 html {
@@ -51,12 +51,23 @@ footer {
   text-align: center;
 }
 
+#btn-play{
+  display: block;
+}
+#btn-settings{
+  display: none;
+
+}
+#btn-about{
+  display: none;
+}
+
 #btn-hit {
   display: none;
 }
 
 #btn-deal {
-  /* display: none; */
+  display: none;
 }
 
 #btn-stay {
@@ -110,7 +121,7 @@ footer {
 }
 
 #status-section {
-  border: 1px solid black; /* temp */
+  /* border: 1px solid black; temp */
   height: 20%;
   width: 100%;
 }
@@ -189,10 +200,10 @@ footer {
 .card-back {
   height: 9rem;
   width: 6rem;
-  background-color: var(--card-back--colour);
+  background-color: var(--card-back-colour);
   border: .35rem solid white;
   border-radius: 6px;
-  color: var(--card-back--colour);
+  color: var(--card-back-colour);
   font-size: 2rem;
 }
 

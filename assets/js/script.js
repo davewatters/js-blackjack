@@ -25,7 +25,7 @@ let numDecks = 1;
 let autoLastBet = true;
 let defaultStack = 600;
 let betAmt = 0;
-
+let gameOver = false;
 
 //
 // create deck
@@ -104,6 +104,13 @@ function dealCard(pObj) {
     // Player
     document.getElementById('player-score').innerHTML = pObj.score;
     document.getElementById('player-section').appendChild(cardDiv);
+
+    // check if bust 
+    if (pObj.score > 21) {
+      document.getElementById('status-section').innerHTML = "You've bust.. House wins!";
+      gameOver = true;
+    }
+
   } else {
     // Dealer
     document.getElementById('dealer-section').appendChild(cardDiv);
@@ -125,6 +132,14 @@ function dealCard(pObj) {
       
       document.getElementById('dealer-score').innerHTML = pObj.score;
     }
+
+    // check if bust 
+    if (pObj.score > 21) {
+      document.getElementById('status-section').innerHTML = "Dealer busts.. You win!";
+      player.stack += (betAmt * 2);
+      gameOver = true;
+    }
+    
   }
 }
 
@@ -141,11 +156,78 @@ function turnDealerCard(hand) {
   el.setAttribute("class", cardClass);
 }
 
+
+/*
+* might not use this
+*/
+function sleep(ms) {
+  let start = new Date().getTime();
+  let now = start;
+  while ( true ) {
+    console.log('.');
+    now = new Date().getTime();
+    let elapsed = now - start;
+    if (elapsed > ms) {
+      break;
+    } 
+  }
+}
+
+
 //-----
 //  Run the game
 //
-createDeck();
-shuffleDeck(deck);
-dealHands();
+function resetGame() {
+  gameOver = false;
+  player.stack = 600;
+  for (i=0; i<numDecks; i++) {
+    createDeck();
+  }
+  shuffleDeck(deck);
+  // Would like to add a sleep() function here to show messages
+  // Place bet code here
+  betAmt = 10;
+  document.getElementById('btn-play').style.display = 'block';
+}
 
+function gameLoop() {
+  if (autoLastBet) {
+    betAmt *= 2;
+    player.stack -= betAmt;
+  }
+  document.getElementById('stack').innerHTML = player.stack;
+  document.getElementById('status-section').innerHTML = "Bet Amount: €" +betAmt;
+
+  document.getElementById('btn-play').style.display = 'none';
+  document.getElementById('btn-deal').style.display = 'block';
+}
+
+/*
+* Event listeners
+*/
+document.getElementById("btn-play").addEventListener("click", function() {
+  resetGame();
+  gameLoop();
+});
+
+document.getElementById("btn-deal").addEventListener("click", function() {
+  dealHands();
+  document.getElementById('btn-deal').style.display = 'none';
+  document.getElementById('btn-hit').style.display = 'block';
+  document.getElementById('btn-stay').style.display = 'block';
+});
+
+document.getElementById("btn-hit").addEventListener("click", function() {
+  dealCard(player);
+});
+
+document.getElementById("btn-stay").addEventListener("click", function() {
+  while (!gameOver) {
+    dealCard(dealer);
+  }
+  document.getElementById('btn-deal').style.display = 'block';
+  document.getElementById('btn-hit').style.display = 'none';
+  document.getElementById('btn-stay').style.display = 'none';
+  gameLoop();
+});
 
