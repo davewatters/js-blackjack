@@ -11,8 +11,11 @@
 }
 
 :root {
-  /* Initialise gloabl var for background colour  */
+  /* Initialise gloabl vars */
+  /* background colour */
   --bg-colour: #076314;
+  /* playing card reverse */
+  --card-back--colour: blue;
 }
 
 html {
@@ -150,7 +153,6 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .flex-col {
@@ -179,8 +181,18 @@ footer {
   width: 6rem;
   background-color: white;
   border: 1px solid black;
-  border-radius: 3px;
+  border-radius: 6px;
   color: black;
+  font-size: 2rem;
+}
+
+.card-back {
+  height: 9rem;
+  width: 6rem;
+  background-color: var(--card-back--colour);
+  border: .35rem solid white;
+  border-radius: 6px;
+  color: var(--card-back--colour);
   font-size: 2rem;
 }
 
@@ -188,8 +200,18 @@ footer {
   color: red;
 }
 
-.black-suit {
-  color: black;
+.card-rank {
+  padding: 0px 4px;
+}
+
+.card-suit {
+  padding: 0px 2px;
+}
+
+.suit-big {
+  line-height: 6rem;
+  font-size: 4.5rem;
+  padding: 0px 4px;
 }
 
 /* 
@@ -211,7 +233,6 @@ footer {
 .chip-20 {
   border-color: grey;
 }
-
 .chip-50 {
   border-color: orange;
 }

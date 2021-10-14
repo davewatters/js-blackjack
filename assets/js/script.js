@@ -81,6 +81,8 @@ function shuffleDeck(deck) {
 /**
  * Deals a single card to hand of player.
  * pObj will be the dealer or player object.
+ * Dealer's first & third cards affect card 
+ * display & score display
  */
 function dealCard(pObj) {
   let newCard = deck.pop();
@@ -89,28 +91,30 @@ function dealCard(pObj) {
 
   // create a div with class "card"
   let cardDiv = document.createElement("div");
-  cardDiv.innerHTML = newCard.rank + newCard.suit;
+  cardDiv.innerHTML = '<p class="card-rank">'+newCard.rank+'</p>' +'<p class="suit-big">'+newCard.suit+'</p>';
   let att = document.createAttribute("class");
   att.value = "card";
   if ((newCard.suit === '&hearts;') || (newCard.suit === '&diams;')) {
     att.value += " red-suit";
   }
-  // Display updated score & add the card to the screen section
+
+  // Display updated score & add card to relevent screen section
   // pObj.id of 0 will always be the dealer
   if (pObj.id) {
     // Player
     document.getElementById('player-score').innerHTML = pObj.score;
-
     let el = document.getElementById('player-section').appendChild(cardDiv);
     el.setAttributeNode(att);
-    // if ((newCard.suit === '&hearts;') || (newCard.suit === '&diams;')) {
-    //   el.className += " red-suit";
-    // }
   } else {
     // Dealer
     document.getElementById('dealer-score').innerHTML = pObj.score;
-
     let el = document.getElementById('dealer-section').appendChild(cardDiv);
+    let numCards = document.getElementById('dealer-section').childElementCount;
+    // Dealer's first card is always face down so we show back of card only
+    // by targetting with a different class
+    if (numCards === 1) {
+      att.value = "card-back";
+    }
     el.setAttributeNode(att);
   }
 }
@@ -122,6 +126,6 @@ function dealCard(pObj) {
 createDeck();
 
 shuffleDeck(deck);
-
 dealHands();
 
+dealCard(player);
