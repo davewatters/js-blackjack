@@ -1,3 +1,5 @@
+"use strict";
+
 // Initialise card & deck objects 
 const RANK = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 const SUIT = ['&spades;', '&hearts;', '&diams;', '&clubs;'];
@@ -20,12 +22,15 @@ const dealer = {
   score: 0,
 };
 
-// Initialise default vars
+// Initialise default settings vars
 let numDecks = 1;
 let autoLastBet = true;
 let defaultStack = 600;
-let betAmt = 0;
+
+// Default new in-game vars
+let betAmt = 20;
 let gameOver = false;
+let handOver = false;
 
 //
 // create deck
@@ -48,13 +53,14 @@ function createDeck() {
   }
 }
 
-//
-// shuffle
-//
+/**
+ * Random sort passed-in array using 
+ * well know algorithm
+ */
 function shuffleDeck(deck) {
   let j, tmp;
   let len = deck.length;
-  document.getElementById('status-section').innerHTML = "Shuffling deck...";
+  document.getElementById('status-section').textContent = "Shuffling deck...";
   for (let i = 0; i < len; i++) {
     // store the card at position i to tmp
     tmp = deck[i]; 
@@ -67,11 +73,12 @@ function shuffleDeck(deck) {
   }
 }
 
+
 /**
  * Deals the opening two cards to each player.
  * Calls dealCard() for player & dealer
  */
- function dealHands() {
+function dealHands() {
   for (let i=0; i<2; i++) {
     dealCard(player);
     dealCard(dealer);
@@ -85,9 +92,10 @@ function shuffleDeck(deck) {
  * card & score display.
  */
 function dealCard(pObj) {
-  let newCard = deck.pop();
+  let newCard = deck.pop(); // take a card from the deck
   pObj.hand.push(newCard);
   pObj.score += newCard.weight;
+  let cardCount = pObj.hand.length;
 
   // create a div with class "card"
   let cardDiv = document.createElement("div");
@@ -102,15 +110,15 @@ function dealCard(pObj) {
   // pObj.id of 0 will always be the dealer
   if (pObj.id) {
     // Player
-    document.getElementById('player-score').innerHTML = pObj.score;
     document.getElementById('player-section').appendChild(cardDiv);
+    document.getElementById('player-score').innerHTML = pObj.score;
 
     // check if bust 
     if (pObj.score > 21) {
-      document.getElementById('status-section').innerHTML = "You've bust.. House wins!";
-      gameOver = true;
+      document.getElementById('status-section').innerHTML = "You've bust..  House wins!";
+      handOver = true;
     }
-
+    console.log('payer got card number ' +cardCount);
   } else {
     // Dealer
     document.getElementById('dealer-section').appendChild(cardDiv);
@@ -137,7 +145,12 @@ function dealCard(pObj) {
     if (pObj.score > 21) {
       document.getElementById('status-section').innerHTML = "Dealer busts.. You win!";
       player.stack += (betAmt * 2);
-      gameOver = true;
+      handOver = true;
+    }
+
+    if (handOver) {
+      document.getElementById('btn-hit').style.display = 'none';
+      document.getElementById('btn-stay').style.display = 'none';    
     }
     
   }
@@ -156,8 +169,8 @@ function turnDealerCard(hand) {
   el.setAttribute("class", cardClass);
 }
 
-
 /*
+* Need a way of delaying action while I display  message to the player 
 * might not use this
 */
 function sleep(ms) {
@@ -173,41 +186,63 @@ function sleep(ms) {
   }
 }
 
-
-//-----
-//  Run the game
-//
 function resetGame() {
   gameOver = false;
   player.stack = 600;
-  for (i=0; i<numDecks; i++) {
+  betAmt = 20;
+  for (let i=0; i<numDecks; i++) {
     createDeck();
   }
-  shuffleDeck(deck);
-  // Would like to add a sleep() function here to show messages
-  // Place bet code here
-  betAmt = 10;
   document.getElementById('btn-play').style.display = 'block';
 }
 
-function gameLoop() {
-  if (autoLastBet) {
-    betAmt *= 2;
-    player.stack -= betAmt;
+//
+//  This is essentially the main game loop
+//
+function newHand() {
+  handOver = false;
+  dealer.score = 0;
+  player.score = 0;
+  document.getElementById('dealer-score').textContent = dealer.score;
+  document.getElementById('player-score').textContent = player.score;
+  //clear the card divs
+  let dDiv = document.getElementById("dealer-section");
+  while (dDiv.childElementCount) {
+    dDiv.removeChild(dDiv.children[0])
   }
-  document.getElementById('stack').innerHTML = player.stack;
-  document.getElementById('status-section').innerHTML = "Bet Amount: €" +betAmt;
+  let pDiv = document.getElementById("player-section");
+  while (pDiv.childElementCount) {
+    pDiv.removeChild(pDiv.children[0])
+  }
 
-  document.getElementById('btn-play').style.display = 'none';
-  document.getElementById('btn-deal').style.display = 'block';
+  // temp - until event listeners for chip btns are written
+  let chipVal = (autoLastBet) ? betAmt : 0;
+  placeBet(chipVal);
+}
+
+//
+// called by: click-Play event
+//
+function placeBet(chipVal) {
+  // play btn toggle off
+  
+  // Would like to add a sleep() function here to show messages
+  // Place bet code here
+  // 
+  betAmt += chipVal;
+  player.stack -= betAmt;
+  document.getElementById('status-section').textContent = "Bet Amount: €" +betAmt;
+  document.getElementById('stack').textContent = player.stack;
 }
 
 /*
 * Event listeners
 */
 document.getElementById("btn-play").addEventListener("click", function() {
-  resetGame();
-  gameLoop();
+  shuffleDeck(deck);
+  newHand();
+  document.getElementById('btn-play').style.display = 'none';
+  document.getElementById('btn-deal').style.display = 'block';
 });
 
 document.getElementById("btn-deal").addEventListener("click", function() {
@@ -219,15 +254,26 @@ document.getElementById("btn-deal").addEventListener("click", function() {
 
 document.getElementById("btn-hit").addEventListener("click", function() {
   dealCard(player);
+  if (handOver) { 
+    document.getElementById('btn-deal').style.display = 'block';
+    document.getElementById('btn-hit').style.display = 'none';
+    document.getElementById('btn-stay').style.display = 'none';  
+    newHand();
+  }
 });
 
 document.getElementById("btn-stay").addEventListener("click", function() {
-  while (!gameOver) {
+  while (!handOver) {
     dealCard(dealer);
   }
   document.getElementById('btn-deal').style.display = 'block';
   document.getElementById('btn-hit').style.display = 'none';
-  document.getElementById('btn-stay').style.display = 'none';
-  gameLoop();
+  document.getElementById('btn-stay').style.display = 'none';  
+  newHand();
 });
 
+//************************************************************ */
+//
+resetGame();
+//
+//************************************************************ */
