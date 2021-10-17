@@ -169,6 +169,9 @@ function dealCard(pObj) {
       handOver = true;
     }    
   }
+  if (handOver) {
+    document.getElementById('stack').textContent = player.stack;
+  }
 }
 
 /**
@@ -237,7 +240,7 @@ function placeBet(chipVal) {
   statusMsg("Place your bet...");
   betAmt += chipVal;
   player.stack -= betAmt;
-  document.getElementById('bet').textContent = "Bet Amount: €" +betAmt;
+  document.getElementById('bet').textContent = "You bet: €" +betAmt;
   document.getElementById('stack').textContent = player.stack;
 }
 
@@ -245,7 +248,7 @@ function placeBet(chipVal) {
 * Event listeners
 */
 document.getElementById("btn-play").addEventListener("click", function() {
-  document.getElementById('btn-play').style.display = 'none';
+  this.style.display = 'none';
   shuffleDeck(deck);
   newHand();
 });
@@ -253,7 +256,7 @@ document.getElementById("btn-play").addEventListener("click", function() {
 document.getElementById("btn-deal").addEventListener("click", function() {
   statusMsg('');
   dealHands();
-  document.getElementById('btn-deal').style.display = 'none';
+  this.style.display = 'none';
   document.getElementById('btn-hit').style.display = 'block';
   document.getElementById('btn-stay').style.display = 'block';
 });
@@ -261,14 +264,14 @@ document.getElementById("btn-deal").addEventListener("click", function() {
 document.getElementById("btn-hit").addEventListener("click", function() {
   dealCard(player);
   if (handOver) { 
-    document.getElementById('btn-hit').style.display = 'none';
+    this.style.display = 'none';
     document.getElementById('btn-stay').style.display = 'none';  
     document.getElementById('btn-again').style.display = 'block';  
   }
 });
 
 document.getElementById("btn-stay").addEventListener("click", function() {
-  document.getElementById('btn-stay').style.display = 'none';  
+  this.style.display = 'none';
   document.getElementById('btn-hit').style.display = 'none';
   while (!handOver) {
     dealCard(dealer);
@@ -277,8 +280,7 @@ document.getElementById("btn-stay").addEventListener("click", function() {
 });
 
 document.getElementById("btn-again").addEventListener("click", function() {
-  // this.style.display = 'none';  
-  document.getElementById('btn-again').style.display = 'none';
+  this.style.display = 'none';
   newHand();
 });
 
