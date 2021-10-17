@@ -54,13 +54,36 @@ function createDeck() {
 }
 
 /**
+ * Updates the text message in the game status div
+ */
+ function statusMsg(msg) {
+  document.getElementById('status').textContent = msg;
+}
+
+/*
+* Need a way of delaying action while I display  message to the player 
+* might not use this
+*/
+function sleep(ms) {
+  let start = new Date().getTime();
+  let now = start;
+  while ( true ) {
+    now = new Date().getTime();
+    let elapsed = now - start;
+    if (elapsed > ms) {
+      break;
+    } 
+  }
+}
+
+/**
  * Randomly sort a passed-in array using 
  * a well know algorithm
  */
 function shuffleDeck(deck) {
   let j, tmp;
   let len = deck.length;
-  document.getElementById('status').textContent = "Shuffling deck...";
+  statusMsg("Shuffling deck...");
   for (let i = 0; i < len; i++) {
     // store the card at position i to tmp
     tmp = deck[i]; 
@@ -114,7 +137,7 @@ function dealCard(pObj) {
 
     // check if bust 
     if (pObj.score > 21) {
-      document.getElementById('status').textContent = "You've bust..  House wins!";
+      statusMsg("You've bust..  House wins!");
       handOver = true;
     }
     console.log('payer got card number ' +cardCount);
@@ -168,22 +191,6 @@ function turnDealerCard(hand) {
   el.setAttribute("class", cardClass);
 }
 
-/*
-* Need a way of delaying action while I display  message to the player 
-* might not use this
-*/
-function sleep(ms) {
-  let start = new Date().getTime();
-  let now = start;
-  while ( true ) {
-    console.log('.');
-    now = new Date().getTime();
-    let elapsed = now - start;
-    if (elapsed > ms) {
-      break;
-    } 
-  }
-}
 
 //
 //
