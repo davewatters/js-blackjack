@@ -226,6 +226,7 @@ function dealCard(p) {
   p.hand.push(newCard);
   let cardCount = p.hand.length;
   let ace = (newCard.rank === 'A') ? true : false;
+  p.score += newCard.weight;
   if (ace && p.score >= 17) {
     // Dealer must hit on soft 17
     // otherwise we can score ace as 1
