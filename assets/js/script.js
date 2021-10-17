@@ -54,10 +54,73 @@ function createDeck() {
 }
 
 /**
+ * Initialisation of game settings
+ */
+ function resetGame() {
+  gameOver = false;
+  player.stack = 600;
+  betAmt = 10;
+  for (let i=0; i<numDecks; i++) {
+    createDeck();
+  }
+  document.getElementById('btn-play').style.display = 'block';
+}
+
+/**
+ * The main game loop called for each new round of dealing
+ */
+function newHand() {
+  handOver = false;
+  dealer.score = 0;
+  player.score = 0;
+  document.getElementById('score0').textContent = dealer.score;
+  document.getElementById('score1').textContent = player.score;
+
+  //clear the players' hands
+  while (dealer.hand.length) {
+    dealer.hand.pop();
+  }
+  while (player.hand.length) {
+    player.hand.pop();
+  }
+  //clear the card divs
+  let p0 = document.getElementById("player0");
+  while (p0.childElementCount) {
+    p0.removeChild(p0.children[0]);
+  }
+  let p1 = document.getElementById("player1");
+  while (p1.childElementCount) {
+    p1.removeChild(p1.children[0]);
+  }
+
+  // temp - until event listeners for chip btns are written
+  placeBet(0);
+  document.getElementById('btn-deal').style.display = 'block';
+}
+
+//
+// called by: newHand
+//
+function placeBet(chipVal) {
+  statusMsg("Place your bet...");
+  betAmt += chipVal;
+  player.stack -= betAmt;
+  betMsg("You bet: €" +betAmt);
+  document.getElementById('stack').textContent = player.stack;
+}
+
+/**
  * Updates the text message in the game status div
  */
  function statusMsg(msg) {
   document.getElementById('status').textContent = msg;
+}
+
+/**
+ * Updates the text message in the bet div
+ */
+ function betMsg(msg) {
+  document.getElementById('bet').textContent = msg;
 }
 
 /*
@@ -156,12 +219,23 @@ function displayCard(p) {
  * p will be the dealer or player object.
  * Dealer's first & third cards affect 
  * card & score display.
+ * Checks for win, lose or draw.
  */
 function dealCard(p) {
   let newCard = deck.pop(); // take a card from the deck
   p.hand.push(newCard);
-  p.score += newCard.weight;
   let cardCount = p.hand.length;
+  let ace = (newCard.rank === 'A') ? true : false;
+  if (ace && p.score >= 17) {
+    // Dealer must hit on soft 17
+    // otherwise we can score ace as 1
+    if (p.id) {
+      if (p.score > 21) {
+        p.score -= 10;
+      }
+    }
+  }
+
   displayCard(p);
 
   // Check for win, lose, or draw
@@ -172,23 +246,46 @@ function dealCard(p) {
     if (cardCount === 2 && p.score === 21) {
       statusMsg("You hit blackjack!");
       player.stack += (betAmt * 1.5);
+      betMsg("Win: €" +(betAmt * 1.5));
+      handOver = true;
+    }
+    // check if bust 
+    if (p.score > 21) {
+      statusMsg("You've bust.. House wins.");
+      betMsg("");
+      handOver = true;
+    }
+    if (cardCount === 5) {
       handOver = true;
     }
 
-    // check if bust 
-    if (p.score > 21) {
-      statusMsg("You've bust..  House wins!");
-      handOver = true;
-    }
   } else {
     // Dealer
+  
+    // How to deal with dealer blackjack before flop card??
+    // >> before 3rd card drawn?
 
-    // check if bust 
-    if (p.score > 21) {
-      statusMsg("Dealer busts.. You win!");
-      player.stack += (betAmt * 2);
+    if (p.score >= 17 || cardCount === 5) {
+      // check if bust 
+      if (p.score > 21) {
+        statusMsg("Dealer busts.. You win.");
+        player.stack += (betAmt * 2);
+        handOver = true;
+      } else if (p.score > player.score) {
+        statusMsg("House wins.");
+        betMsg("");
+      } else if (p.score === player.score) {
+        statusMsg("Draw.. bet returned.");
+        betMsg("");
+        player.stack += betAmt;
+      } else {
+        statusMsg("You win!");
+        player.stack += (betAmt * 2);
+        betMsg("Win: €" +(betAmt * 2));
+      }
       handOver = true;
-    }    
+    }
+
   }
   if (handOver) {
     document.getElementById('stack').textContent = player.stack;
@@ -206,61 +303,6 @@ function turnDealerCard(hand) {
   }
   let el = document.getElementById('player0').children[1];
   el.setAttribute("class", cardClass);
-}
-
-//
-//
-//
-function resetGame() {
-  gameOver = false;
-  player.stack = 600;
-  betAmt = 10;
-  for (let i=0; i<numDecks; i++) {
-    createDeck();
-  }
-  document.getElementById('btn-play').style.display = 'block';
-}
-
-//
-//  This is essentially the main game loop
-//
-function newHand() {
-  handOver = false;
-  dealer.score = 0;
-  player.score = 0;
-  document.getElementById('score0').textContent = dealer.score;
-  document.getElementById('score1').textContent = player.score;
-  //clear the players' hands
-  while (dealer.hand.length) {
-    dealer.hand.pop();
-  }
-  while (player.hand.length) {
-    player.hand.pop();
-  }
-  //clear the card divs
-  let p0 = document.getElementById("player0");
-  while (p0.childElementCount) {
-    p0.removeChild(p0.children[0]);
-  }
-  let p1 = document.getElementById("player1");
-  while (p1.childElementCount) {
-    p1.removeChild(p1.children[0]);
-  }
-
-  // temp - until event listeners for chip btns are written
-  placeBet(0);
-  document.getElementById('btn-deal').style.display = 'block';
-}
-
-//
-// called by: newHand
-//
-function placeBet(chipVal) {
-  statusMsg("Place your bet...");
-  betAmt += chipVal;
-  player.stack -= betAmt;
-  document.getElementById('bet').textContent = "You bet: €" +betAmt;
-  document.getElementById('stack').textContent = player.stack;
 }
 
 /*

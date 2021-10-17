@@ -201,9 +201,9 @@ After final `git push` to the project repo
 1.  Open the project repo 
 1.  Select the 'Settings' tab
 1.  On the left-hand-side menu select the Pages option
-1.  Select the main branch as the source, then click the save button
+1.  Select the main branch as the source, then click the Save button
 1.  A message will confirm that the site has been published at `https://YOUR-GITHUB-NAME.github.io/REPO-NAME/`
-1.  Test that the site has successfully gone live live by clicking on the link
+1.  Test that the site has successfully gone live by clicking on the link
 
 #_TODO: Add a How to Fork
 
