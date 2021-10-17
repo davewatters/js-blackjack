@@ -28,7 +28,7 @@ let autoLastBet = true;
 let defaultStack = 600;
 
 // Default new in-game vars
-let betAmt = 20;
+let betAmt = 10;
 let gameOver = false;
 let handOver = false;
 
@@ -108,62 +108,83 @@ function dealHands() {
 }
 
 /**
+ * Renders the card on screen in its respective div
+ * and updates the displayed points score.
+ * Accepts the player object as a parameter. 
+ */
+function displayCard(p) {
+  let numCards = p.hand.length;
+  let card = p.hand[numCards-1];
+  let weight = card.weight;
+
+  let cDiv = document.createElement("div");
+  cDiv.innerHTML = '<p class="card-rank">'+card.rank+'</p>' + '<p class="suit-big">'+card.suit+'</p>';
+  let cClass = "card";
+  if ((card.suit === '&hearts;') || (card.suit === '&diams;')) {
+    cClass += " red-suit";
+  }
+  cDiv.setAttribute("class", cClass);
+  document.getElementById('player'+p.id).appendChild(cDiv);
+
+  if (!p.id) {
+    // 0 is Dealer
+
+    // Dealer's second card is always face down so we show only
+    // back of card by targetting with a different class.
+    // Note that the dealer's points score is not made visible
+    if (numCards === 2) {
+      cClass = "card-back";
+      cDiv.setAttribute("class", cClass);
+    }
+
+    if (numCards === 1 || numCards > 2) {
+      if (numCards === 3) {
+        turnDealerCard(p.hand);
+      }
+      document.getElementById('score'+p.id).textContent = p.score;
+    }
+
+  } else {
+    // 1 is Player
+
+    document.getElementById('score'+p.id).textContent = p.score;
+  }
+}
+
+/**
  * Deals a single card to hand of player.
- * pObj will be the dealer or player object.
+ * p will be the dealer or player object.
  * Dealer's first & third cards affect 
  * card & score display.
  */
-function dealCard(pObj) {
+function dealCard(p) {
   let newCard = deck.pop(); // take a card from the deck
-  pObj.hand.push(newCard);
-  pObj.score += newCard.weight;
-  let cardCount = pObj.hand.length;
+  p.hand.push(newCard);
+  p.score += newCard.weight;
+  let cardCount = p.hand.length;
+  displayCard(p);
 
-  // create a div with class "card"
-  let cardDiv = document.createElement("div");
-  cardDiv.innerHTML = '<p class="card-rank">'+newCard.rank+'</p>' +'<p class="suit-big">'+newCard.suit+'</p>';
-  let cardClass = "card";
-  if ((newCard.suit === '&hearts;') || (newCard.suit === '&diams;')) {
-    cardClass += " red-suit";
-  }
-  cardDiv.setAttribute("class", cardClass);
-
-  // Display updated score & card to relevent screen section
-  // pObj.id of 0 will always be the dealer
-  if (pObj.id) {
+  // Check for win, lose, or draw
+  if (p.id) {
     // Player
-    document.getElementById('player-section').appendChild(cardDiv);
-    document.getElementById('player-score').innerHTML = pObj.score;
+
+    // check for blackjack (aka 'a natural') 
+    if (cardCount === 2 && p.score === 21) {
+      statusMsg("You hit blackjack!");
+      player.stack += (betAmt * 1.5);
+      handOver = true;
+    }
 
     // check if bust 
-    if (pObj.score > 21) {
+    if (p.score > 21) {
       statusMsg("You've bust..  House wins!");
       handOver = true;
     }
   } else {
     // Dealer
-    document.getElementById('dealer-section').appendChild(cardDiv);
-    
-    let numCards = document.getElementById('dealer-section').childElementCount;
-    // Dealer's second card is always face down so we show only back
-    // of card by targetting with a different class.
-    // Dealer's points score is not made visible
-    if (numCards === 2) {
-      cardClass = "card-back";
-    }
-    
-    cardDiv.setAttribute("class", cardClass);
-    
-    if (numCards === 1 || numCards > 2) {
-      if (numCards === 3) {
-        turnDealerCard(pObj.hand);
-      }
-      
-      document.getElementById('dealer-score').innerHTML = pObj.score;
-    }
 
     // check if bust 
-    if (pObj.score > 21) {
+    if (p.score > 21) {
       statusMsg("Dealer busts.. You win!");
       player.stack += (betAmt * 2);
       handOver = true;
@@ -183,10 +204,9 @@ function turnDealerCard(hand) {
   if ((hand[1].suit === '&hearts;') || (hand[1].suit === '&diams;')) {
     cardClass += " red-suit";
   }
-  let el = document.getElementById('dealer-section').children[1];
+  let el = document.getElementById('player0').children[1];
   el.setAttribute("class", cardClass);
 }
-
 
 //
 //
@@ -194,7 +214,7 @@ function turnDealerCard(hand) {
 function resetGame() {
   gameOver = false;
   player.stack = 600;
-  betAmt = 20;
+  betAmt = 10;
   for (let i=0; i<numDecks; i++) {
     createDeck();
   }
@@ -208,8 +228,8 @@ function newHand() {
   handOver = false;
   dealer.score = 0;
   player.score = 0;
-  document.getElementById('dealer-score').textContent = dealer.score;
-  document.getElementById('player-score').textContent = player.score;
+  document.getElementById('score0').textContent = dealer.score;
+  document.getElementById('score1').textContent = player.score;
   //clear the players' hands
   while (dealer.hand.length) {
     dealer.hand.pop();
@@ -218,23 +238,22 @@ function newHand() {
     player.hand.pop();
   }
   //clear the card divs
-  let dDiv = document.getElementById("dealer-section");
-  while (dDiv.childElementCount) {
-    dDiv.removeChild(dDiv.children[0])
+  let p0 = document.getElementById("player0");
+  while (p0.childElementCount) {
+    p0.removeChild(p0.children[0]);
   }
-  let pDiv = document.getElementById("player-section");
-  while (pDiv.childElementCount) {
-    pDiv.removeChild(pDiv.children[0])
+  let p1 = document.getElementById("player1");
+  while (p1.childElementCount) {
+    p1.removeChild(p1.children[0]);
   }
 
   // temp - until event listeners for chip btns are written
-  let chipVal = (autoLastBet) ? betAmt : 0;
-  placeBet(chipVal);
+  placeBet(0);
   document.getElementById('btn-deal').style.display = 'block';
 }
 
 //
-// called by: 
+// called by: newHand
 //
 function placeBet(chipVal) {
   statusMsg("Place your bet...");
@@ -254,11 +273,17 @@ document.getElementById("btn-play").addEventListener("click", function() {
 });
 
 document.getElementById("btn-deal").addEventListener("click", function() {
+  this.style.display = 'none';
   statusMsg('');
   dealHands();
-  this.style.display = 'none';
-  document.getElementById('btn-hit').style.display = 'block';
+  if (handOver) {
+    document.getElementById('btn-again').style.display = 'block';
+  } else {
+    document.getElementById('btn-hit').style.display = 'block';
+    document.getElementById('btn-stay').style.display = 'block';  
   document.getElementById('btn-stay').style.display = 'block';
+    document.getElementById('btn-stay').style.display = 'block';  
+  }
 });
 
 document.getElementById("btn-hit").addEventListener("click", function() {
@@ -279,14 +304,16 @@ document.getElementById("btn-stay").addEventListener("click", function() {
   document.getElementById('btn-again').style.display = 'block';  
 });
 
+// 'Again' btn and event listener required to allow the last play to
+// remain visible on screen until player is ready for next hand  
 document.getElementById("btn-again").addEventListener("click", function() {
   this.style.display = 'none';
   newHand();
 });
 
 
-//************************************************************ */
+/* ********************************************************** */
 //
 resetGame();
 //
-//************************************************************ */
+/* ********************************************************** */

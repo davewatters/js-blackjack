@@ -90,7 +90,7 @@ footer {
 }
 
 .msg-text {
-  font-size: x-large;
+  font-size: large;
   color: white;
   text-shadow: black 0px 0px 4px; /* color offset-x offset-y blur-radius */  
   /* color: #fff;
@@ -117,7 +117,7 @@ footer {
   width: 20%
 }
 
-#dealer-section {
+#player0, #player1 {
   border: 1px solid purple; /* temp */
   height: 30%;
   width: 100%;
@@ -137,14 +137,6 @@ footer {
   width: 100%;
 }
 
-#player-section {
-  border: 1px solid purple; /* temp */
-  height: 30%;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-start;
-}
-
 #controls-section {
   height: 10%;
   width: 100%;
@@ -154,14 +146,7 @@ footer {
   height: 50%;
 }
 
-#dealer-score {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30%;
-}
-
-#player-score {
+#score0, #score1 {
   display: flex;
   justify-content: center;
   align-items: center;
