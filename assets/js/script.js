@@ -54,13 +54,13 @@ function createDeck() {
 }
 
 /**
- * Random sort passed-in array using 
- * well know algorithm
+ * Randomly sort a passed-in array using 
+ * a well know algorithm
  */
 function shuffleDeck(deck) {
   let j, tmp;
   let len = deck.length;
-  document.getElementById('status-section').textContent = "Shuffling deck...";
+  document.getElementById('status').textContent = "Shuffling deck...";
   for (let i = 0; i < len; i++) {
     // store the card at position i to tmp
     tmp = deck[i]; 
@@ -72,7 +72,6 @@ function shuffleDeck(deck) {
     deck[j] = tmp;
   }
 }
-
 
 /**
  * Deals the opening two cards to each player.
@@ -115,7 +114,7 @@ function dealCard(pObj) {
 
     // check if bust 
     if (pObj.score > 21) {
-      document.getElementById('status-section').innerHTML = "You've bust..  House wins!";
+      document.getElementById('status').textContent = "You've bust..  House wins!";
       handOver = true;
     }
     console.log('payer got card number ' +cardCount);
@@ -143,7 +142,7 @@ function dealCard(pObj) {
 
     // check if bust 
     if (pObj.score > 21) {
-      document.getElementById('status-section').innerHTML = "Dealer busts.. You win!";
+      document.getElementById('status').innerHTML = "Dealer busts.. You win!";
       player.stack += (betAmt * 2);
       handOver = true;
     }
@@ -186,6 +185,9 @@ function sleep(ms) {
   }
 }
 
+//
+//
+//
 function resetGame() {
   gameOver = false;
   player.stack = 600;
@@ -205,6 +207,13 @@ function newHand() {
   player.score = 0;
   document.getElementById('dealer-score').textContent = dealer.score;
   document.getElementById('player-score').textContent = player.score;
+  //clear the players' hands
+  while (dealer.hand.length) {
+    dealer.hand.pop();
+  }
+  while (player.hand.length) {
+    player.hand.pop();
+  }
   //clear the card divs
   let dDiv = document.getElementById("dealer-section");
   while (dDiv.childElementCount) {
@@ -218,20 +227,17 @@ function newHand() {
   // temp - until event listeners for chip btns are written
   let chipVal = (autoLastBet) ? betAmt : 0;
   placeBet(chipVal);
+  document.getElementById('btn-deal').style.display = 'block';
 }
 
 //
-// called by: click-Play event
+// called by: 
 //
 function placeBet(chipVal) {
-  // play btn toggle off
-  
-  // Would like to add a sleep() function here to show messages
-  // Place bet code here
-  // 
+  document.getElementById('status').textContent = "Place your bet...";
   betAmt += chipVal;
   player.stack -= betAmt;
-  document.getElementById('status-section').textContent = "Bet Amount: €" +betAmt;
+  document.getElementById('bet').textContent = "Bet Amount: €" +betAmt;
   document.getElementById('stack').textContent = player.stack;
 }
 
@@ -239,10 +245,9 @@ function placeBet(chipVal) {
 * Event listeners
 */
 document.getElementById("btn-play").addEventListener("click", function() {
+  document.getElementById('btn-play').style.display = 'none';
   shuffleDeck(deck);
   newHand();
-  document.getElementById('btn-play').style.display = 'none';
-  document.getElementById('btn-deal').style.display = 'block';
 });
 
 document.getElementById("btn-deal").addEventListener("click", function() {
@@ -255,7 +260,6 @@ document.getElementById("btn-deal").addEventListener("click", function() {
 document.getElementById("btn-hit").addEventListener("click", function() {
   dealCard(player);
   if (handOver) { 
-    document.getElementById('btn-deal').style.display = 'block';
     document.getElementById('btn-hit').style.display = 'none';
     document.getElementById('btn-stay').style.display = 'none';  
     newHand();
@@ -263,12 +267,11 @@ document.getElementById("btn-hit").addEventListener("click", function() {
 });
 
 document.getElementById("btn-stay").addEventListener("click", function() {
+  document.getElementById('btn-stay').style.display = 'none';  
+  document.getElementById('btn-hit').style.display = 'none';
   while (!handOver) {
     dealCard(dealer);
   }
-  document.getElementById('btn-deal').style.display = 'block';
-  document.getElementById('btn-hit').style.display = 'none';
-  document.getElementById('btn-stay').style.display = 'none';  
   newHand();
 });
 
