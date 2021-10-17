@@ -140,7 +140,6 @@ function dealCard(pObj) {
       statusMsg("You've bust..  House wins!");
       handOver = true;
     }
-    console.log('payer got card number ' +cardCount);
   } else {
     // Dealer
     document.getElementById('dealer-section').appendChild(cardDiv);
@@ -165,16 +164,10 @@ function dealCard(pObj) {
 
     // check if bust 
     if (pObj.score > 21) {
-      document.getElementById('status').innerHTML = "Dealer busts.. You win!";
+      statusMsg("Dealer busts.. You win!");
       player.stack += (betAmt * 2);
       handOver = true;
-    }
-
-    if (handOver) {
-      document.getElementById('btn-hit').style.display = 'none';
-      document.getElementById('btn-stay').style.display = 'none';    
-    }
-    
+    }    
   }
 }
 
@@ -241,7 +234,7 @@ function newHand() {
 // called by: 
 //
 function placeBet(chipVal) {
-  document.getElementById('status').textContent = "Place your bet...";
+  statusMsg("Place your bet...");
   betAmt += chipVal;
   player.stack -= betAmt;
   document.getElementById('bet').textContent = "Bet Amount: €" +betAmt;
@@ -258,6 +251,7 @@ document.getElementById("btn-play").addEventListener("click", function() {
 });
 
 document.getElementById("btn-deal").addEventListener("click", function() {
+  statusMsg('');
   dealHands();
   document.getElementById('btn-deal').style.display = 'none';
   document.getElementById('btn-hit').style.display = 'block';
@@ -269,7 +263,7 @@ document.getElementById("btn-hit").addEventListener("click", function() {
   if (handOver) { 
     document.getElementById('btn-hit').style.display = 'none';
     document.getElementById('btn-stay').style.display = 'none';  
-    newHand();
+    document.getElementById('btn-again').style.display = 'block';  
   }
 });
 
@@ -279,8 +273,15 @@ document.getElementById("btn-stay").addEventListener("click", function() {
   while (!handOver) {
     dealCard(dealer);
   }
+  document.getElementById('btn-again').style.display = 'block';  
+});
+
+document.getElementById("btn-again").addEventListener("click", function() {
+  // this.style.display = 'none';  
+  document.getElementById('btn-again').style.display = 'none';
   newHand();
 });
+
 
 //************************************************************ */
 //

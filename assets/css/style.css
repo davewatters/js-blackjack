@@ -41,14 +41,14 @@ footer {
 }
 
 .btn {
-  background-color: yellow;
+  background-color: yellowgreen;
   border: 2px solid black;
   border-radius: 4px;
   font-family: inherit;
   height: 4rem;
   margin: 0rem 2rem;
   min-width: 8rem;
-  padding: 0px 20px;
+  padding: 0px 15px;
   text-align: center;
 }
 
@@ -74,6 +74,11 @@ footer {
 #btn-stay {
   display: none;
 }
+
+#btn-again{
+  display: none;
+}
+
 
 /* 
 * Global colour styles
