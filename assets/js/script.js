@@ -24,7 +24,7 @@ const dealer = {
 
 // Initialise default settings vars
 let numDecks = 1;
-let cardsInPlay = 52;
+let maxCards = 52;
 let autoLastBet = true;
 let defaultStack = 600;
 
@@ -32,39 +32,62 @@ let defaultStack = 600;
 let betAmt = 10;
 let gameOver = false;
 
-//
-// create deck
-//
-function createDeck() {
-  let cardObj;
-  for (let i = 0; i < SUIT.length; i++) {
-    for (let j = 0; j < RANK.length; j++) {
-      let weight = parseInt(RANK[j]);
-      if (RANK[j] === 'A')
-        weight = 11;
-      if ('JQK'.includes(RANK[j]))
-        weight = 10;
-      cardObj = Object.create(card);
-      cardObj.rank = RANK[j];
-      cardObj.suit = SUIT[i];
-      cardObj.weight = weight;
-      deck.push(cardObj);
-    }
-  }
-}
-
 /**
  * Initialisation of game settings
  */
  function resetGame() {
   gameOver = false;
+  maxCards = 52 * numDecks;
   player.stack = 600;
   betAmt = 10;
-  for (let i=0; i<numDecks; i++) {
-    createDeck();
-  }
-  cardsInPlay = deck.length;
   document.getElementById('btn-play').style.display = 'block';
+}
+
+/**
+ * Builds the game deck.
+ */
+function createDeck() {
+  let cardObj;
+  while (deck.length) {
+    deck.pop();
+  }
+  for (let k=0; k<numDecks; k++) {
+    for (let i = 0; i < SUIT.length; i++) {
+      for (let j = 0; j < RANK.length; j++) {
+        let weight = parseInt(RANK[j]);
+        if (RANK[j] === 'A')
+        weight = 11;
+        if ('JQK'.includes(RANK[j]))
+        weight = 10;
+        cardObj = Object.create(card);
+        cardObj.rank = RANK[j];
+        cardObj.suit = SUIT[i];
+        cardObj.weight = weight;
+        deck.push(cardObj);
+      }
+    }
+  }
+}
+
+/**
+ * Randomly sort a passed-in array using 
+ * a well know algorithm
+ */
+ function shuffleDeck() {
+  let j, tmp;
+  statusMsg("Shuffling deck...");
+  createDeck();
+  let len = deck.length;
+  for (let i = 0; i < len; i++) {
+    // store the card at position i to tmp
+    tmp = deck[i]; 
+    // generate a random card position   
+    j =  Math.floor(Math.random() * len);
+    // take card from random position and move to position i
+    deck[i] = deck[j];
+    // ..then put card from tmp into pos j
+    deck[j] = tmp;
+  }
 }
 
 /**
@@ -93,8 +116,11 @@ function newHand() {
     p1.removeChild(p1.children[0]);
   }
 
-  // if cardsInPlay down to 25% of deck
+  // if cardsInPlay down to 25%
   // then shuffleDeck
+  if (deck.length < (maxCards/4)) {
+    shuffleDeck();
+  }
 
   // temp - until event listeners for chip btns are written
   placeBet(0);
@@ -110,56 +136,6 @@ function placeBet(chipVal) {
   player.stack -= betAmt;
   betMsg("You bet: €" +betAmt);
   document.getElementById('stack').textContent = player.stack;
-}
-
-/**
- * Updates the text message in the game status div
- */
- function statusMsg(msg) {
-  document.getElementById('status').textContent = msg;
-}
-
-/**
- * Updates the text message in the bet div
- */
- function betMsg(msg) {
-  document.getElementById('bet').textContent = msg;
-}
-
-/*
-* Need a way of delaying action while I display  message to the player 
-* might not use this
-*/
-function sleep(ms) {
-  let start = new Date().getTime();
-  let now = start;
-  while ( true ) {
-    now = new Date().getTime();
-    let elapsed = now - start;
-    if (elapsed > ms) {
-      break;
-    } 
-  }
-}
-
-/**
- * Randomly sort a passed-in array using 
- * a well know algorithm
- */
-function shuffleDeck(deck) {
-  let j, tmp;
-  let len = deck.length;
-  statusMsg("Shuffling deck...");
-  for (let i = 0; i < len; i++) {
-    // store the card at position i to tmp
-    tmp = deck[i]; 
-    // generate a random card position   
-    j =  Math.floor(Math.random() * len);
-    // take card from random position and move to position i
-    deck[i] = deck[j];
-    // ..then put card from tmp into pos j
-    deck[j] = tmp;
-  }
 }
 
 /**
@@ -332,12 +308,42 @@ function checkScore(p) {
   return handOver;
 }
 
+/**
+ * Updates the text message in the game status div
+ */
+ function statusMsg(msg) {
+  document.getElementById('status').textContent = msg;
+}
+
+/**
+ * Updates the text message in the bet div
+ */
+ function betMsg(msg) {
+  document.getElementById('bet').textContent = msg;
+}
+
+/*
+* Need a way of delaying action while I display  message to the player 
+* might not use this
+*/
+function sleep(ms) {
+  let start = new Date().getTime();
+  let now;
+  while ( true ) {
+    now = new Date().getTime();
+    let elapsed = now - start;
+    if (elapsed > ms) {
+      break;
+    } 
+  }
+}
+
 /*
 * Event listeners
 */
 document.getElementById("btn-play").addEventListener("click", function() {
   this.style.display = 'none';
-  shuffleDeck(deck);
+  shuffleDeck();
   newHand();
 });
 
