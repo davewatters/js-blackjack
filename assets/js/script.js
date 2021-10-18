@@ -24,13 +24,13 @@ const dealer = {
 
 // Initialise default settings vars
 let numDecks = 1;
+let cardsInPlay = 52;
 let autoLastBet = true;
 let defaultStack = 600;
 
 // Default new in-game vars
 let betAmt = 10;
 let gameOver = false;
-let handOver = false;
 
 //
 // create deck
@@ -63,6 +63,7 @@ function createDeck() {
   for (let i=0; i<numDecks; i++) {
     createDeck();
   }
+  cardsInPlay = deck.length;
   document.getElementById('btn-play').style.display = 'block';
 }
 
@@ -70,7 +71,6 @@ function createDeck() {
  * The main game loop called for each new round of dealing
  */
 function newHand() {
-  handOver = false;
   dealer.score = 0;
   player.score = 0;
   document.getElementById('score0').textContent = dealer.score;
@@ -92,6 +92,9 @@ function newHand() {
   while (p1.childElementCount) {
     p1.removeChild(p1.children[0]);
   }
+
+  // if cardsInPlay down to 25% of deck
+  // then shuffleDeck
 
   // temp - until event listeners for chip btns are written
   placeBet(0);
@@ -194,116 +197,138 @@ function displayCard(p) {
 
     // Dealer's second card is always face down so we show only
     // back of card by targetting with a different class.
-    // Note that the dealer's points score is not made visible
+    // For this card the dealer's total points score is not made visible.
     if (numCards === 2) {
       cClass = "card-back";
       cDiv.setAttribute("class", cClass);
-    }
-
-    if (numCards === 1 || numCards > 2) {
-      if (numCards === 3) {
-        turnDealerCard(p.hand);
-      }
+    } else {
       document.getElementById('score'+p.id).textContent = p.score;
     }
 
   } else {
     // 1 is Player
-
     document.getElementById('score'+p.id).textContent = p.score;
   }
 }
 
 /**
- * Deals a single card to hand of player.
- * p will be the dealer or player object.
- * Dealer's first & third cards affect 
- * card & score display.
- * Checks for win, lose or draw.
- */
-function dealCard(p) {
-  let newCard = deck.pop(); // take a card from the deck
-  p.hand.push(newCard);
-  let cardCount = p.hand.length;
-  let ace = (newCard.rank === 'A') ? true : false;
-  p.score += newCard.weight;
-  if (ace && p.score >= 17) {
-    // Dealer must hit on soft 17
-    // otherwise we can score ace as 1
-    if (p.id) {
-      if (p.score > 21) {
-        p.score -= 10;
-      }
-    }
-  }
-
-  displayCard(p);
-
-  // Check for win, lose, or draw
-  if (p.id) {
-    // Player
-
-    // check for blackjack (aka 'a natural') 
-    if (cardCount === 2 && p.score === 21) {
-      statusMsg("You hit blackjack!");
-      player.stack += (betAmt * 1.5);
-      betMsg("Win: €" +(betAmt * 1.5));
-      handOver = true;
-    }
-    // check if bust 
-    if (p.score > 21) {
-      statusMsg("You've bust.. House wins.");
-      betMsg("");
-      handOver = true;
-    }
-    if (cardCount === 5) {
-      handOver = true;
-    }
-
-  } else {
-    // Dealer
-  
-    // How to deal with dealer blackjack before flop card??
-    // >> before 3rd card drawn?
-
-    if (p.score >= 17 || cardCount === 5) {
-      // check if bust 
-      if (p.score > 21) {
-        statusMsg("Dealer busts.. You win.");
-        player.stack += (betAmt * 2);
-        handOver = true;
-      } else if (p.score > player.score) {
-        statusMsg("House wins.");
-        betMsg("");
-      } else if (p.score === player.score) {
-        statusMsg("Draw.. bet returned.");
-        betMsg("");
-        player.stack += betAmt;
-      } else {
-        statusMsg("You win!");
-        player.stack += (betAmt * 2);
-        betMsg("Win: €" +(betAmt * 2));
-      }
-      handOver = true;
-    }
-
-  }
-  if (handOver) {
-    document.getElementById('stack').textContent = player.stack;
-  }
-}
-
-/**
  * Turns the dealer's second card face up
- * when dealer is dealt third card
+ * when dealer is dealt third card.
  */
-function turnDealerCard(hand) {
+ function turnDealerCard(hand) {
   let cardClass = "card";
   if ((hand[1].suit === '&hearts;') || (hand[1].suit === '&diams;')) {
     cardClass += " red-suit";
   }
   let el = document.getElementById('player0').children[1];
   el.setAttribute("class", cardClass);
+}
+
+/**
+ * Deals a single card to hand of player.
+ * Accepts obj p: the dealer or player object.
+ * Dealer's first & third cards affect card & score display.
+ * Checks for win, lose or draw.
+ */
+function dealCard(p) {
+  let newCard = deck.pop(); // take next card from the deck
+  p.hand.push(newCard);
+  p.score += newCard.weight;
+  let ace = (newCard.rank === 'A') ? true : false;
+  if (ace && p.score >= 17) {
+    // Dealer must hit on soft 17
+    // otherwise we can score ace as 1
+    if (p.id && p.score > 21) {
+        // If player has drawn an ace and will bust..
+        p.score -= 10;
+    }
+  }
+  displayCard(p);
+
+}
+
+/**
+ * Checks the points score to see if we have a winner.
+ * Returns true if hand has ended.
+ */
+function checkScore(p) {
+  let handOver = false;
+  let cardCount = p.hand.length;
+  let win, payout = 0;
+  let s = "";
+  let b = document.getElementById('bet').textContent;
+
+  if (p.id) {
+    // Player
+
+    // check if player dealt blackjack
+    // if yes > then turnover dealer card
+    // check if dealer also has blackjack
+    // if yes> draw, bet returned
+    // if no > player wins > pay bet + (win = bet * 1.5)
+    // handover = true
+
+    // check for blackjack
+    if (cardCount === 2 && p.score === 21) {
+      turnDealerCard(dealer.hand);
+      if (dealer.score === 21) {
+        s = "Two 21s! Game drawn.";
+        b = "Bet " +betAmt +" returned.";
+        payout = betAmt;
+      } else {
+        s = "You hit blackjack!";
+        win = (betAmt * 1.5)
+        payout = betAmt + win;
+        b = "You win: " +payout;
+      }
+
+      handOver = true;
+    }
+
+    // check if bust 
+    if (p.score > 21) {
+      s = "You've bust.. House wins.";
+      b = "You lost: " +betAmt;
+      handOver = true;
+    }
+
+    // max five cards dealt
+    if (cardCount === 5) {
+      handOver = true;
+    }
+
+  } else {
+    // Dealer
+
+    if (p.score >= 17 || cardCount === 5) {
+      // check if bust 
+      if (p.score > 21) {
+        s = "Dealer busts.. You win.";
+        payout = betAmt * 2;
+        b = "Payout: " +payout;
+      } else if (p.score > player.score) {
+        s = "House wins.";
+        b = "You lost: " +betAmt;
+      } else if (p.score === player.score) {
+        s = "Draw.. bet returned.";
+        payout = betAmt;
+        b = "Bet " +betAmt +" returned.";
+      } else {
+        s = "You win!";
+        win = betAmt;
+        payout = betAmt + win;
+        b = "You win: €" +win;
+      }
+      handOver = true;
+    }
+  }
+  statusMsg(s);
+  betMsg(b);
+  if (handOver) {
+    player.stack += payout;
+    document.getElementById('stack').textContent = player.stack;
+  }
+  return handOver;
 }
 
 /*
@@ -319,19 +344,17 @@ document.getElementById("btn-deal").addEventListener("click", function() {
   this.style.display = 'none';
   statusMsg('');
   dealHands();
-  if (handOver) {
+  if ( checkScore(player) ) {
     document.getElementById('btn-again').style.display = 'block';
   } else {
     document.getElementById('btn-hit').style.display = 'block';
-    document.getElementById('btn-stay').style.display = 'block';  
-  document.getElementById('btn-stay').style.display = 'block';
     document.getElementById('btn-stay').style.display = 'block';  
   }
 });
 
 document.getElementById("btn-hit").addEventListener("click", function() {
   dealCard(player);
-  if (handOver) { 
+  if ( checkScore(player) ) {
     this.style.display = 'none';
     document.getElementById('btn-stay').style.display = 'none';  
     document.getElementById('btn-again').style.display = 'block';  
@@ -341,7 +364,8 @@ document.getElementById("btn-hit").addEventListener("click", function() {
 document.getElementById("btn-stay").addEventListener("click", function() {
   this.style.display = 'none';
   document.getElementById('btn-hit').style.display = 'none';
-  while (!handOver) {
+  turnDealerCard(dealer.hand);
+  while (!checkScore(dealer)) {
     dealCard(dealer);
   }
   document.getElementById('btn-again').style.display = 'block';  
