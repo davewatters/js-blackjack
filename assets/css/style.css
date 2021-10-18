@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
 /* 
   Generic styling
@@ -19,7 +19,7 @@
   --bg-colour: #076314; /* background colour */
   /* --text-font-family: "Roboto Condensed", sans-serif; Fallbacks: Arial, Helvetica, sans-serif */
   --text-font-family: "Roboto", sans-serif; /* Fallbacks: Arial, Helvetica, sans-serif */
-  --header-font-family: 'Abril Fatface', cursive;  /* Fallbacks:  */
+  --header-font-family: 'Lora', serif;
   --card-font-family: "Roboto Slab", serif;  /* Fallbacks: Georgia, Times, serif */
   --card-back-colour: rgb(0, 0, 255); /* playing card reverse */
   --text-font-size: 1.6rem;
@@ -38,11 +38,14 @@ body {
 }
 
 h1 {
-  color: black;
+  color: white;
   font-family: var(--header-font-family);
   font-weight: bold;
-  text-shadow: white 0px 0px 3px; /* color offset-x offset-y blur-radius */
   text-align: center;
+}
+
+p {
+  font-family: var(--card-font-family, Arial, Helvetica, sans-serif);
 }
 
 footer {
@@ -90,6 +93,10 @@ footer {
   display: none;
 }
 
+#btn-info {
+  border-color: yellowgreen;
+}
+
 
 /* 
 * Global colour styles
@@ -97,15 +104,12 @@ footer {
 .score-colour {
   font-size: x-large;
   color: white;
-  text-shadow: black 0px 0px 4px; /* color offset-x offset-y blur-radius */
 }
 
 .msg-text {
   font-size: large;
   color: white;
   text-shadow: black 0px 0px 4px; /* color offset-x offset-y blur-radius */  
-  /* color: #fff;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; */
 }
 
 /* 
@@ -259,3 +263,43 @@ footer {
   border-color: black;
 }
 
+/*
+  Modal styling
+*/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.btn-close-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.btn-close-modal:hover,
+.btn-close-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

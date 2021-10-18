@@ -12,8 +12,15 @@
     <h1>Blackjack</h1>
   </header>
   
-  <div id="outer-container" class="flex-row">
-    <div id="lhs-container" class="flex-col flex-jc-fe">
+  <main id="outer-container" class="flex-row">
+    <!-- Flex container to hold info & bet button divs -->
+    <div id="lhs-container" class="flex-col flex-jc-sb">
+      <!-- Info button always available -->
+      <div>
+        <button id="btn-info" class="chip">Info</button>
+      </div>
+      <!-- Container to hold the 'chip' betting buttons 
+        and the player's chip stack -->
       <div id="player-pot" class="flex-col flex-jc-fe">
         <button class="chip chip-10">10</button>
         <button class="chip chip-20">20</button>
@@ -26,8 +33,11 @@
       <!-- Delear's cards display area -->
       <div id="player0" class="flex-row"></div>
 
+      <!-- Game area information messages divs -->
+      <!-- These will show status of last play & bet/win amounts -->
       <div id="status" class="flex-row flex-ai-c msg-text"></div>
       <div id="bet" class="flex-row flex-ai-c msg-text"></div>
+      <!--  -->
       <div id="controls-section" class="flex-row flex-ai-c">
         <button id="btn-play" class="btn">Play</button>
         <button id="btn-settings" class="btn">Settings</button>
@@ -37,6 +47,7 @@
         <button id="btn-stay" class="btn">Stand</button>
         <button id="btn-again" class="btn">Go Again</button>
       </div>
+
       <!-- Player's cards display area -->
       <div id="player1" class="flex-row"></div>
     </div>
@@ -44,7 +55,31 @@
       <div id="score0" class="score-colour">0</div>
       <div id="score1" class="score-colour">0</div>
     </div>
+  </main>
+  <!-- End of main game screen -->
+  
+  <!-- Game Info Modal screen -->
+  <div id="modal-info" class="modal">
+    <div class="modal-content">
+      <span id="btn-close-modal-info" class="btn-close-modal">[&times;]</span>
+      <h2>Instructions</h2>
+      <p>Click on the chips to place your bet.</p>
+      <p>Decide whether you want to Hit to get another card and Stand if you are done.</p>
+      <p></p>
+      <h2>About Blackjack</h2>
+      <p>Blackjack is also known as 21. While the popularity of Blackjack dates from World War I, its roots go back to the 1760s in France, where it was known as Vingt-et-Un. Today, Blackjack can be found in every casino.</p>
+      <p>The object of the game is to beat the dealer by getting as close to 21 as possible, without going over 21.</p>
+      <p>The standard 52-card pack is used and in most casinos several decks of cards are shuffled together. The six-deck game (312 cards) is the most popular.</p>
+      <h3>Basic Rules</h3>
+      <h3>Basic Strategy</h3>
+      <p>Always takes into account what the dealer's upcard is. When the dealer's upcard is a good one, a 7, 8, 9, 10-card, or ace for example, the player should not stop drawing until a total of 17 or more is reached. When the dealer's upcard is a poor one, 4, 5, or 6, the player should stop drawing as soon as he gets a total of 12 or higher. The strategy here is never to take a card if there is any chance of going bust. The desire with this poor holding is to let the dealer hit and hopefully go over 21. Finally, when the dealer's up card is a fair one, 2 or 3, the player should stop with a total of 13 or higher.</p>
+      <p>With a soft hand, the general strategy is to keep hitting until a total of at least 18 is reached. Thus, with an ace and a six (7 or 17), the player would not stop at 17, but would hit.</p>
+      <p>The basic strategy for doubling down is as follows: With a total of 11, the player should always double down. With a total of 10, he should double down unless the dealer shows a ten-card or an ace. With a total of 9, the player should double down only if the dealer's card is fair or poor (2 through 6).</p>
+      <p>For splitting, the player should always split a pair of aces or 8s; identical ten-cards should not be split, and neither should a pair of 5s, since two 5s are a total of 10, which can be used more effectively in doubling down. A pair of 4s should not be split either, as a total of 8 is a good number to draw to. Generally, 2s, 3s, or 7s can be split unless the dealer has an 8, 9, ten-card, or ace. Finally, 6s should not be split unless the dealer's card is poor (2 through 6).
+      <p id="game-info"></p>
+    </div>
   </div>
+  <!-- End Game Info Modal -->
 
   <!-- Footer -->
   <footer class="flex-row">

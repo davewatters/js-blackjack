@@ -64,7 +64,6 @@ function createDeck() {
         cardObj.suit = SUIT[i];
         cardObj.weight = weight;
         deck.push(cardObj);
-        statusMsg("Shuffling deck...");
       }
     }
   }
@@ -199,6 +198,7 @@ function displayCard(p) {
   }
   let el = document.getElementById('player0').children[1];
   el.setAttribute("class", cardClass);
+  document.getElementById('score0').textContent = dealer.score;
 }
 
 /**
@@ -384,6 +384,15 @@ document.getElementById("btn-stay").addEventListener("click", function() {
 document.getElementById("btn-again").addEventListener("click", function() {
   this.style.display = 'none';
   newHand();
+});
+
+// Show & hide the modal pages
+document.getElementById("btn-info").addEventListener("click", function() {
+  document.getElementById("modal-info").style.display = 'block';
+});
+
+document.getElementById("btn-close-modal-info").addEventListener("click", function() {
+  document.getElementById("modal-info").style.display = 'none';
 });
 
 
