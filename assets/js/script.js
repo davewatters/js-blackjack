@@ -279,7 +279,7 @@ function checkScore(p) {
         s = "You hit blackjack!";
         win = (betAmt * 1.5)
         payout = betAmt + win;
-        b = "You win: " +payout;
+        b = "You win: " +win;
       }
 
       handOver = true;
@@ -303,18 +303,19 @@ function checkScore(p) {
     if (p.score >= 17 || cardCount === 5) {
       // check if bust 
       if (p.score > 21) {
-        s = "Dealer busts.. You win.";
+        s = "Dealer busts..";
+        win = betAmt;
         payout = betAmt * 2;
-        b = "Payout: " +payout;
+        b = "You win: " +win;
       } else if (p.score > player.score) {
-        s = "House wins.";
+        s = "House wins..";
         b = "You lost: " +betAmt;
       } else if (p.score === player.score) {
-        s = "Draw.. bet returned.";
+        s = "Draw..";
         payout = betAmt;
         b = "Bet " +betAmt +" returned.";
       } else {
-        s = "You win!";
+        s = "Player wins!";
         win = betAmt;
         payout = betAmt + win;
         b = "You win: €" +win;
@@ -365,7 +366,7 @@ document.getElementById("btn-stay").addEventListener("click", function() {
   this.style.display = 'none';
   document.getElementById('btn-hit').style.display = 'none';
   turnDealerCard(dealer.hand);
-  while (!checkScore(dealer)) {
+  while ( !checkScore(dealer) ) {
     dealCard(dealer);
   }
   document.getElementById('btn-again').style.display = 'block';  
