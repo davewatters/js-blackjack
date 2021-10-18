@@ -64,6 +64,7 @@ function createDeck() {
         cardObj.suit = SUIT[i];
         cardObj.weight = weight;
         deck.push(cardObj);
+        statusMsg("Shuffling deck...");
       }
     }
   }
