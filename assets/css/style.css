@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
 
 /* 
   Generic styling
@@ -15,12 +13,13 @@
 
 :root {
   /* Initialise gloabl vars */
+  /* Sans-Serif font family fallbacks: Arial, Helvetica, sans-serif */
+  /* Serif font family fallbacks: Georgia, Times, serif */
 
   --bg-colour: #076314; /* background colour */
-  /* --text-font-family: "Roboto Condensed", sans-serif; Fallbacks: Arial, Helvetica, sans-serif */
-  --text-font-family: "Roboto", sans-serif; /* Fallbacks: Arial, Helvetica, sans-serif */
   --header-font-family: 'Lora', serif;
-  --card-font-family: "Roboto Slab", serif;  /* Fallbacks: Georgia, Times, serif */
+  --text-font-family: "Roboto Slab", serif;
+  --card-font-family: "Roboto Slab", serif;
   --card-back-colour: rgb(0, 0, 255); /* playing card reverse */
   --text-font-size: 1.6rem;
   --btn-font-size: 1.6rem;
@@ -33,25 +32,25 @@ html {
 
 body {
   background-color: var(--bg-colour);
+  color: white;
+  font-family: var(--text-font-family, Georgia, Times, serif);
   font-size: var(--text-font-size);
-  font-family: var(--text-font-family, Arial, Helvetica, sans-serif);
 }
 
 h1 {
-  color: white;
   font-family: var(--header-font-family);
   font-weight: bold;
   text-align: center;
 }
 
 p {
-  font-family: var(--card-font-family, Arial, Helvetica, sans-serif);
-  margin: 1rem;
+  font-family: var(--card-font-family);
 }
 
 footer {
-  height: 4rem;
   align-items: center;
+  font-size: small;
+  height: 4rem;
 }
 
 .btn {
@@ -68,9 +67,9 @@ footer {
 }
 
 .btn:hover, .btn:focus {
+  background-color: rgb(170, 255, 1);
   cursor: pointer;
 }
-
 
 #btn-play{
   display: block;
@@ -100,9 +99,8 @@ footer {
 }
 
 #btn-info {
-  border-color: yellowgreen;
+  min-width: unset;
 }
-
 
 /* 
 * Global colour styles
@@ -135,7 +133,6 @@ footer {
 }
 
 #player0, #player1 {
-  border: 1px solid purple; /* temp */
   height: 30%;
   width: 100%;
   align-items: center;
@@ -143,13 +140,11 @@ footer {
 }
 
 #status {
-  /* border: 1px solid purple; temp */
   height: 4rem;
   width: 100%;
 }
 
 #bet {
-  /* border: 1px solid purple; temp */
   height: 4rem;
   width: 100%;
 }
@@ -250,6 +245,7 @@ footer {
   background-color: white;
   border: 7px dashed;
   border-radius: 50%;
+  font-family: inherit;
   height: 5rem;
   margin: 4px;
   text-align: center;
@@ -277,7 +273,6 @@ footer {
   Modal styling
 */
 /* The Modal (background) */
-/* from W3 Schools */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -296,12 +291,12 @@ footer {
   background-color: rgba(238, 244, 244, 0.8);
   border: 3px solid #edda1c;
   border-radius: 4px;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 50rem;
   margin: 15% auto;
-  font-family: var(--card-font-family);
 }
 
 /* The Close Button */
@@ -323,7 +318,6 @@ footer {
 .modal-content h2 {
   margin: 1rem;
 }
-
 
 .modal-list {
   margin-bottom: 1.5rem;
