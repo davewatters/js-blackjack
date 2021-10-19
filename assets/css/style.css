@@ -159,11 +159,11 @@ footer {
 }
 
 #player-pot {
-  height: 50%;
+  height: auto;
 }
 
 #stack {
-  padding: 1rem;
+  padding: 2rem 1rem 4rem 1rem;
 }
 
 #score0, #score1 {
@@ -326,4 +326,39 @@ footer {
 .modal-list {
   margin-bottom: 1.5rem;
   width: 80%;
+}
+
+/* 
+* Media queries for responsive design
+*/
+/* For small screen sizes 600px and down */
+@media screen and (min-width: 600px) {
+  #centre-container {
+    width: 360px;
+  }
+
+  .card {
+    height: 12rem;
+    width: 8rem;
+  }
+
+  .card-back {
+    height: 12rem;
+    width: 8rem;
+  }
+  .suit-big {
+    font-size: 7rem;
+    padding-top: 2rem;
+    padding-left: 3px;
+  }
+
+  .msg-text {
+    font-size: x-large;
+  }
+
+  .chip {
+    height: 7rem;
+    width: 7rem;
+  }
+
 }

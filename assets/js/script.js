@@ -330,7 +330,7 @@ function checkScore(p) {
         s = "House wins";
         b = "You lost: " +betAmt;
       } else if (p.score === player.score) {
-        s = "Draw.";
+        s = "Draw";
         payout = betAmt;
         b = "Bet " +betAmt +" returned";
       } else {
