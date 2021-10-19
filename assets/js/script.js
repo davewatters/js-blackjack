@@ -38,7 +38,7 @@ let gameOver = false;
  function resetGame() {
   gameOver = false;
   maxCards = 52 * numDecks;
-  player.stack = 600;
+  player.stack = defaultStack;
   betAmt = 10;
   document.getElementById('btn-play').style.display = 'block';
 }
