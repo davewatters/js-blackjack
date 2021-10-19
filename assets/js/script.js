@@ -29,8 +29,27 @@ let autoLastBet = true;
 let defaultStack = 600;
 
 // Default new in-game vars
-let betAmt = 10;
+let betAmt = 0;
+let lastBet = 0;
 let gameOver = false;
+
+// Add event listers to player's betting chip buttons
+let chips = document.getElementsByClassName("chip");
+for (let chip of chips) {
+  chip.addEventListener("click", function() {
+    placeBet( parseInt(this.textContent) );
+  });
+}
+
+/**
+ * Activate/Deactive the chip buttons while in play
+ */
+function toggleBetting() {
+  let chips = document.getElementsByClassName("chip");
+  for (let chip of chips) {
+    chip.disabled = !(chip.disabled);
+  }
+}
 
 /**
  * Initialisation of game settings
@@ -39,7 +58,8 @@ let gameOver = false;
   gameOver = false;
   maxCards = 52 * numDecks;
   player.stack = defaultStack;
-  betAmt = 10;
+  betAmt = 0;
+  lastBet = 0;
   document.getElementById('btn-play').style.display = 'block';
 }
 
@@ -106,7 +126,7 @@ function newHand() {
   while (player.hand.length) {
     player.hand.pop();
   }
-  //clear the card divs
+  // clear the card divs
   let p0 = document.getElementById("player0");
   while (p0.childElementCount) {
     p0.removeChild(p0.children[0]);
@@ -116,14 +136,19 @@ function newHand() {
     p1.removeChild(p1.children[0]);
   }
 
-  // if cardsInPlay down to 25%
-  // then shuffleDeck
+  // if cardsInPlay down to 25% then shuffleDeck
   if (deck.length < (maxCards/4)) {
     shuffleDeck();
   }
 
-  // temp - until event listeners for chip btns are written
-  placeBet(0);
+  if (autoLastBet) {
+    betAmt = lastBet;
+    player.stack -= betAmt
+    betMsg("Auto bet: €" +betAmt);
+    document.getElementById('stack').textContent = player.stack;
+  }
+  statusMsg("");
+
   document.getElementById('btn-deal').style.display = 'block';
 }
 
@@ -131,11 +156,14 @@ function newHand() {
 // called by: newHand
 //
 function placeBet(chipVal) {
-  statusMsg("Place your bet...");
   betAmt += chipVal;
-  player.stack -= betAmt;
-  betMsg("You bet: €" +betAmt);
-  document.getElementById('stack').textContent = player.stack;
+  if (betAmt <= player.stack) {
+    player.stack -= chipVal;
+    betMsg("You bet: €" +betAmt);
+    document.getElementById('stack').textContent = player.stack;
+  } else {
+    statusMsg("You can't afford that bet!");
+  }
 }
 
 /**
@@ -346,17 +374,22 @@ document.getElementById("btn-play").addEventListener("click", function() {
   this.style.display = 'none';
   shuffleDeck();
   newHand();
+  toggleBetting();
 });
 
 document.getElementById("btn-deal").addEventListener("click", function() {
-  this.style.display = 'none';
-  statusMsg('');
-  dealHands();
-  if ( checkScore(player) ) {
-    document.getElementById('btn-again').style.display = 'block';
-  } else {
-    document.getElementById('btn-hit').style.display = 'block';
-    document.getElementById('btn-stay').style.display = 'block';  
+  if (betAmt > 0) {
+    this.style.display = 'none';
+    toggleBetting();
+    lastBet = betAmt;
+    statusMsg('');
+    dealHands();
+    if ( checkScore(player) ) {
+      document.getElementById('btn-again').style.display = 'block';
+    } else {
+      document.getElementById('btn-hit').style.display = 'block';
+      document.getElementById('btn-stay').style.display = 'block';
+    }
   }
 });
 
@@ -384,6 +417,7 @@ document.getElementById("btn-stay").addEventListener("click", function() {
 document.getElementById("btn-again").addEventListener("click", function() {
   this.style.display = 'none';
   newHand();
+  toggleBetting();
 });
 
 // Show & hide the modal pages
@@ -394,7 +428,6 @@ document.getElementById("btn-info").addEventListener("click", function() {
 document.getElementById("btn-close-modal-info").addEventListener("click", function() {
   document.getElementById("modal-info").style.display = 'none';
 });
-
 
 /* ********************************************************** */
 //
