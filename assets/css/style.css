@@ -270,7 +270,7 @@ footer {
 /* The Modal (background) */
 /* from W3 Schools */
 .modal {
-  display: block; /* Hidden by default */
+  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 10; /* Sit on top */
   left: 0;
