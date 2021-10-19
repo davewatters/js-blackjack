@@ -102,6 +102,10 @@ footer {
   min-width: unset;
 }
 
+#btn-reset {
+  display: none;
+}
+
 /* 
 * Global colour styles
 */

@@ -12,7 +12,7 @@ const deck = [];
 const hand = [];
 const player = {
   id: 1,
-  stack: 600,
+  stack: 0,
   hand: [],
   score: 0,
 };
@@ -26,14 +26,14 @@ const dealer = {
 let numDecks = 1;
 let maxCards = 52;
 let autoLastBet = true;
-let defaultStack = 600;
+let defaultStack = 1200;
 
 // Default new in-game vars
 let betAmt = 0;
 let lastBet = 0;
 let gameOver = false;
 
-// Add event listers to player's betting chip buttons
+// Add event listeners to player's betting chip buttons
 let chips = document.getElementsByClassName("chip");
 for (let chip of chips) {
   chip.addEventListener("click", function() {
@@ -60,6 +60,8 @@ function toggleBetting() {
   player.stack = defaultStack;
   betAmt = 0;
   lastBet = 0;
+  statusMsg("Welcome");
+  betMsg("");
   document.getElementById('btn-play').style.display = 'block';
 }
 
@@ -111,7 +113,7 @@ function createDeck() {
 }
 
 /**
- * The main game loop called for each new round of dealing
+ * The main game loop called for each new round of dealing.
  */
 function newHand() {
   dealer.score = 0;
@@ -141,20 +143,31 @@ function newHand() {
     shuffleDeck();
   }
 
+  statusMsg("");
   if (autoLastBet) {
     betAmt = lastBet;
-    player.stack -= betAmt
     betMsg("Auto bet: €" +betAmt);
-    document.getElementById('stack').textContent = player.stack;
+    if (betAmt <= player.stack) {
+      player.stack -= betAmt
+      document.getElementById('stack').textContent = player.stack;
+    } else {
+      statusMsg("You can't afford to bet!");
+      gameOver = true;
+    }
   }
-  statusMsg("");
 
-  document.getElementById('btn-deal').style.display = 'block';
+  if (!gameOver) {
+    document.getElementById('btn-deal').style.display = 'block';
+  } else {
+    // document.getElementById('btn-settings').style.display = 'block';
+    document.getElementById('btn-reset').style.display = 'block';
+  }
 }
 
-//
-// called by: newHand
-//
+/**
+ * Called by the chip button event on click.
+ * Accepts the value of the clicked button.
+ */
 function placeBet(chipVal) {
   betAmt += chipVal;
   if (betAmt <= player.stack) {
@@ -163,6 +176,7 @@ function placeBet(chipVal) {
     document.getElementById('stack').textContent = player.stack;
   } else {
     statusMsg("You can't afford that bet!");
+    betAmt -= chipVal;
   }
 }
 
@@ -277,8 +291,8 @@ function checkScore(p) {
     if (cardCount === 2 && p.score === 21) {
       turnDealerCard(dealer.hand);
       if (dealer.score === 21) {
-        s = "Two 21s! Game drawn.";
-        b = "Bet " +betAmt +" returned.";
+        s = "Two 21s! Game drawn";
+        b = "Bet " +betAmt +" returned";
         payout = betAmt;
       } else {
         s = "You hit blackjack!";
@@ -292,7 +306,7 @@ function checkScore(p) {
 
     // check if bust 
     if (p.score > 21) {
-      s = "You've bust.. House wins.";
+      s = "You've bust";
       b = "You lost: " +betAmt;
       handOver = true;
     }
@@ -308,17 +322,17 @@ function checkScore(p) {
     if (p.score >= 17 || cardCount === 5) {
       // check if bust 
       if (p.score > 21) {
-        s = "Dealer busts..";
+        s = "Dealer busts";
         win = betAmt;
         payout = betAmt * 2;
         b = "You win: " +win;
       } else if (p.score > player.score) {
-        s = "House wins..";
+        s = "House wins";
         b = "You lost: " +betAmt;
       } else if (p.score === player.score) {
-        s = "Draw..";
+        s = "Draw.";
         payout = betAmt;
-        b = "Bet " +betAmt +" returned.";
+        b = "Bet " +betAmt +" returned";
       } else {
         s = "Player wins!";
         win = betAmt;
@@ -418,6 +432,12 @@ document.getElementById("btn-again").addEventListener("click", function() {
   this.style.display = 'none';
   newHand();
   toggleBetting();
+});
+
+document.getElementById("btn-reset").addEventListener("click", function() {
+  this.style.display = 'none';
+  // document.getElementById('btn-settings').style.display = 'none';
+  resetGame();
 });
 
 // Show & hide the modal pages
