@@ -61,22 +61,45 @@
   <!-- Game Info Modal screen -->
   <div id="modal-info" class="modal">
     <div class="modal-content">
-      <span id="btn-close-modal-info" class="btn-close-modal">[&times;]</span>
-      <h2>Instructions</h2>
-      <p>Click on the chips to place your bet.</p>
-      <p>Decide whether you want to Hit to get another card and Stand if you are done.</p>
-      <p></p>
-      <h2>About Blackjack</h2>
-      <p>Blackjack is also known as 21. While the popularity of Blackjack dates from World War I, its roots go back to the 1760s in France, where it was known as Vingt-et-Un. Today, Blackjack can be found in every casino.</p>
-      <p>The object of the game is to beat the dealer by getting as close to 21 as possible, without going over 21.</p>
-      <p>The standard 52-card pack is used and in most casinos several decks of cards are shuffled together. The six-deck game (312 cards) is the most popular.</p>
-      <h3>Basic Rules</h3>
+      <span id="btn-close-modal-info" class="btn-close-modal" aria-label="info close button">[&times;]</span>
+      <h2>How To Play</h2>
+      <div>
+        <p>The object of Blackjack, also known as 21, is to beat the dealer by getting as close to 21 as possible without going over 21 (which known as going bust).</p>
+        <p>You can change the deafult game settings or click play to begin.</p>
+        <p>Click on the chips to place your bet. The bet amount will be deducted from your chip stack. Once placed, a bet cannot be changed. Click Deal when you are ready for the hand to begin.</p>
+        <p>Initially two cards are dealt to each player face up, except the dealer, whose second card is dealt face down. The card point vaules, or scores, are shown to the right of the player's hands. Each card's score is its "pip" value, or 10 in the case of the picture ranks (Jack, Queen, King). Aces can be treated as 1 or 11. Being dealt an Ace with a 10, J, Q or K is known as a blackjack, and is an automatic win.</p>
+        <p>Decide whether you want to Hit to get another card, or Stand if you are done and the hand can be played out.</p>
+        <p></p>
+        <p>Just like in a casino the cards will be shuffled at the start and again each time the deck is down to a low proportion of the cards left. (This stops players card counting.)</p>
+        <p>Lastly, and most importantly, enjoy playing for fun!</p>
+      </div>
+      <h3>"House Rules"</h3>
+      <div class="modal-list">
+        <ul>
+          <li>Blackjack pays 1.5 times bet</li>
+          <li>Win pays bet amount</li>
+          <li>Draw returns bet</li>
+          <li>Dealer hits on soft 17 (Ace + 6)</li>
+          <li>Bets, once placed, cannot be changed</li>
+          <li>Default play is with one deck of 52 cards</li>
+          <li>Five cards max to a hand</li>
+          <li>Deck shuffles when a quarter of cards remaining</li>
+        </ul>
+      </div>
       <h3>Basic Strategy</h3>
-      <p>Always takes into account what the dealer's upcard is. When the dealer's upcard is a good one, a 7, 8, 9, 10-card, or ace for example, the player should not stop drawing until a total of 17 or more is reached. When the dealer's upcard is a poor one, 4, 5, or 6, the player should stop drawing as soon as he gets a total of 12 or higher. The strategy here is never to take a card if there is any chance of going bust. The desire with this poor holding is to let the dealer hit and hopefully go over 21. Finally, when the dealer's up card is a fair one, 2 or 3, the player should stop with a total of 13 or higher.</p>
-      <p>With a soft hand, the general strategy is to keep hitting until a total of at least 18 is reached. Thus, with an ace and a six (7 or 17), the player would not stop at 17, but would hit.</p>
-      <p>The basic strategy for doubling down is as follows: With a total of 11, the player should always double down. With a total of 10, he should double down unless the dealer shows a ten-card or an ace. With a total of 9, the player should double down only if the dealer's card is fair or poor (2 through 6).</p>
-      <p>For splitting, the player should always split a pair of aces or 8s; identical ten-cards should not be split, and neither should a pair of 5s, since two 5s are a total of 10, which can be used more effectively in doubling down. A pair of 4s should not be split either, as a total of 8 is a good number to draw to. Generally, 2s, 3s, or 7s can be split unless the dealer has an 8, 9, ten-card, or ace. Finally, 6s should not be split unless the dealer's card is poor (2 through 6).
-      <p id="game-info"></p>
+      <div class="modal-list">
+        <ul>
+          <li>Always take into account what the dealer's upcard is.</li>
+          <li>Almost always hit until you reach seventeen, especially if the dealer's upcard is good - 7 or higher (7 to 10 or Ace).</li>
+          <li>If the dealer has a poor upcard of 4, 5 or 6, don't take any chances and stand - they're most likely to bust!</li>
+        </ul>
+      </div>
+      <h3>More About Blackjack</h3>
+      <div>
+        <p>Blackjack is also known as 21. While the popularity of Blackjack dates from World War I, its roots go back to the 1760s in France, where it was known as Vingt-et-Un. Today, Blackjack can be found in every casino.</p>
+        <p>The standard 52-card pack is used and in most casinos several decks of cards are shuffled together. The six-deck game (312 cards) is the most popular.</p>
+        <br>
+      </div>
     </div>
   </div>
   <!-- End Game Info Modal -->
