@@ -21,7 +21,9 @@ You can view the Blackjack live site [HERE.](https://davewatters.github.io/black
 ## - Purpose -
 [ This website was created as the second Portfolio Project (PP2) for the Code Institute's Full Stack Web Development course. ]
 
-The site was built as a simple Blackjack game to be played just for fun. 
+The site was built as a simple Blackjack game to be played just for fun. To that end, it was kept simple - uncluttered and uncomplicated. It was designed to appeal to both novices and seasoned card players alike, so it feetures a betting function with an available stack of chips - however, no actual real money is gambled.  The thrills of the of the ups and downs of each round of betting is allowed to happen easily by a design which keeps the options simple and enables the player to quickly move the action along.
+
+As a requirement for a portfolio project it is built as a responsive, interactive, front-end web site using HTML & CSS, and showcasing JavaScript skills.  
 
 ## - User Experience Design -
 
@@ -32,30 +34,27 @@ The site was built as a simple Blackjack game to be played just for fun.
         -    Site must be intuitive to read & navigate on both desktop & mobile devices
 
     -   ### Design Scope to Deliver MVP
-    #_TODO
-
-    
         -   #### First Time Visitor Goals
             As a first time user...
-            -   I want to easily understand the main purpose of the site and learn more about the organisation
-            -   I want to be able to easily navigate throughout the site to find content
-            -   I want to find their social media links to follow event news
+            -   I want to be able to intuitively navigate the site
+            -   I want to easily find instructions to understand how to use the site
+            -   I want to be able to easily & quickly play the game
+            -   I want the site to be visually clear & appealing
 
         -   #### Returning Visitor Goals
             As a returning visitor...
-            -   I want to be able to easily register my interest in attending an event
-            -   I want to find the best way to get in contact with the organisers with any questions or suggestions I may have
-            -   I want to be able to view the site clearly on a mobile device
+            -   I want to be able to quickly play the game
+            -   I want to be able to view and play the game on a mobile device
 
         -   #### Frequent User Goals
             As a frequent user...
-            -   I want to to see if there are any new events happening
-            -   I want to to see if there are any updates on a forthcoming event
-            -   I want to see any new photos or videos of previous events or related acitivites
+            -   I want to to be able to increase the difficulty level of the game to make play more exciting
+
 
 -   ### Design
     -   #### Layout
-        #_TODO  
+        #_TODO
+        The game is to be kept simple and presented on the main landing page. This is also to be the game play area. Additional information like instructions, game rules or configurable settings should appear as a clear overlay of the main game area without navigating away from the page. 
 
     -   #### Colour Scheme
         The default background was chosen to resemble a casino card table's green baize. The colour scheme then had to work and contrast with that. White text is what works best against this green and a much brighter green was then chosen for the control buttons, and an even brighter lime-green for their highlighting. The main focus of the game are the cards and stack of chips, so these were made to look as close in style of real cards and casino chips are possible using standard colours (e.g. blue, orange etc.). Built-in HTML entities (&spades;, &diams;  etc.) were used to depict a simple card instead of using elaborate graphics. All of the colours have 'AAA' WCAG 2.0 contrast scores. The results of the colour contrast testing are included in the [Testing](#testing) section below.
@@ -86,7 +85,8 @@ To fulfil the needs of the site's users, the following features were implemented
 - **Simple Game Area** takes the player straight into the action of the game by presenting the casino card table look in an uncluttered way. Each player's cards are displayed in the relevant section.
 - **Control Buttons** are only visible when relevent to the play, e.g Deal or Hit & Stand.
 - **Info Button** is available at all times and allows the user to show instructions and strategy hints at any time during the game. This takes the form of an overlay with clear text on a light background.
-- **The Player's Stack** of is visible at all times and the betting chips are styled with a semblance of real casino chips.  The total value remaining is clearly diplayed, as is the currrent bet amount.
+- **Betting** The player's stack is visible at all times and the betting chips are styled with a semblance of real casino chips.  The total value remaining is clearly diplayed, as is the currrent bet amount.
+    - This fulfills the user's thrills of winning or losing bets against the dealer.
 - **System Messages** are short and to the point, e.g. Dealer busts or You win, and displyed clearly in the centre. 
     -   This allows the user to navigate intuitively between the site's pages
 <h2 align="center"><img src="readme-docs/header-wide.png"></h2>
