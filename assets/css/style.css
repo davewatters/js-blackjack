@@ -196,6 +196,10 @@ footer {
   justify-content: space-between;
 }
 
+.flex-jc-sa {
+  justify-content: space-around;
+}
+
 .flex-ai-c {
   align-items: center;
 }
@@ -208,7 +212,7 @@ footer {
   width: 6rem;
   background-color: white;
   border: 1px solid black;
-  border-radius: 6px;
+  border-radius: 9px;
   color: black;
   font-family: var(--card-font-family, Georgia, Times, serif);
   font-size: 2rem;
@@ -219,7 +223,7 @@ footer {
   width: 6rem;
   background-color: var(--card-back-colour);
   border: .35rem solid white;
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--card-back-colour);
   font-size: 2rem;
 }
@@ -331,24 +335,24 @@ footer {
 /* 
 * Media queries for responsive design
 */
-/* For small screen sizes 600px and down */
+/* For small screen sizes 600px and up */
 @media screen and (min-width: 600px) {
   #centre-container {
     width: 360px;
   }
 
   .card {
+    font-size: 2.6rem;
+  }
+  
+  .card, .card-back {
     height: 12rem;
     width: 8rem;
   }
 
-  .card-back {
-    height: 12rem;
-    width: 8rem;
-  }
   .suit-big {
     font-size: 7rem;
-    padding-top: 2rem;
+    padding-top: 1.3rem;
     padding-left: 3px;
   }
 
@@ -357,8 +361,52 @@ footer {
   }
 
   .chip {
+    font-size: 2rem;
     height: 7rem;
     width: 7rem;
   }
+}
 
+/* For screen sizes 900px and up */
+@media screen and (min-width: 900px) {
+  .card {
+    font-size: 2.6rem;
+  }
+  
+  .card, .card-back {
+    height: 15rem;
+    width: 10rem;
+  }
+
+  .card-rank {
+    padding: 0px 6px;
+  }
+  
+  .suit-big {
+    font-size: 8rem;
+    padding-top: 2.5rem;
+    padding-left: 4px;
+  }
+}
+
+/* For screen sizes 1200px and up */
+@media screen and (min-width: 900px) {
+  .card {
+    font-size: 2.6rem;
+  }
+  
+  .card, .card-back {
+    height: 15rem;
+    width: 10rem;
+  }
+
+  .card-rank {
+    padding: 0px 6px;
+  }
+  
+  .suit-big {
+    font-size: 8rem;
+    padding-top: 2.5rem;
+    padding-left: 4px;
+  }
 }
