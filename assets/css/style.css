@@ -17,10 +17,10 @@
   /* Serif font family fallbacks: Georgia, Times, serif */
 
   --bg-colour: #076314; /* background colour */
-  --header-font-family: 'Lora', serif;
+  --header-font-family: "Lora", serif;
   --text-font-family: "Roboto Slab", serif;
   --card-font-family: "Roboto Slab", serif;
-  --card-back-colour: rgb(0, 0, 255); /* playing card reverse */
+  --card-back-colour: #00f; /* playing card reverse */
   --text-font-size: 1.6rem;
   --btn-font-size: 1.6rem;
 }
@@ -32,7 +32,7 @@ html {
 
 body {
   background-color: var(--bg-colour);
-  color: white;
+  color: #fff;
   font-family: var(--text-font-family, Georgia, Times, serif);
   font-size: var(--text-font-size);
 }

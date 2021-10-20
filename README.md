@@ -1,6 +1,6 @@
 # Blackjack
 
-## A Simple Blackjack Game written in JavaScript
+## A Simple Blackjack game written in JavaScript
 
 
 You can view the Blackjack live site [HERE.](https://davewatters.github.io/blackjack)
@@ -58,40 +58,44 @@ The site was built as a simple Blackjack game to be played just for fun.
         #_TODO  
 
     -   #### Colour Scheme
-        The default background was chosen to resemble a casino card table's green baize. The colour scheme then had to work and contrast with that. 
-        <!--- all of which have 'AAA' WCAG 2.0 contrast scores when used as text on the green background (i.e in the header & footer). The results of the colour contrast testing are included in the [Testing](#testing) section below.
-        --->
+        The default background was chosen to resemble a casino card table's green baize. The colour scheme then had to work and contrast with that. White text is what works best against this green and a much brighter green was then chosen for the control buttons, and an even brighter lime-green for their highlighting. The main focus of the game are the cards and stack of chips, so these were made to look as close in style of real cards and casino chips are possible using standard colours (e.g. blue, orange etc.). Built-in HTML entities (&spades;, &diams;  etc.) were used to depict a simple card instead of using elaborate graphics. All of the colours have 'AAA' WCAG 2.0 contrast scores. The results of the colour contrast testing are included in the [Testing](#testing) section below.
 
         - Colour choices
-            - Card Table green, #076324
-
-        - How colours were used
-            - Body: White
-            - Header: Green 
-            - Footer: Green
-            - Content text: Green on White or White on Green, as applicable
-            - Highlights (Active/Selected/Border): Yellow
+            - Background: Card Table green, #076324
+            - Text elements: White on Green background
+            - Playing cards: Black & Red on white
+            - Modal pages: A pale, cool off-white, #eef4f4
 
     -   #### Typography
+        The Google font, Roboto Slab, was chosen as it resembles the old typewriter-style lettering used on traditional playing cards, but has heavier lines which lends itself standing to out better on smaller screens.  
+        Google font, Lora Bold, was chosen for the main game heading as it is also heavy with its headline-worthy thick letters which make it really stand out.  I also liked its playful look - the capital 'B' and the the lowercase 'j'. It is a serif, like  the Robot Slab, and both work well together.
+
 
     -   #### Imagery
+        The screen is all about the casino look - green card table with cards & betting chips contrasted in stark relief. No elaborate imagery was necessary and would have detracted from the purpose of the site for the end user - which is to focus on repeatedly playing hands of blackjack to try to beat the dealer at each turn.    
     
     -   #### Wireframes
         I did not create wireframes with software like Balsamiq, but I have decided to include pictures of my pencil sketches of my layout design process.  These do not necessarily represent the final look of the site pages, but are presented here to show how I went about fleshing out my initial thoughts and ideas about how to structure the site before a line of code was written.
 <h2 align="center"><img src="readme-docs/wf-main-screen-mobile.jpg"></h2>
 
 ## - Features -
-To fulfil the needs of the site owner and its users, the following features were implemented:
+To fulfil the needs of the site's users, the following features were implemented:
 
 #_TODO
 
--   **Navigation Bar** contains the site name/logo and links to the Home, Events and SingUp pages. It is identical on, and positioned at, the top of all pages. It is fully responsive on different device sizes. The currently selected page is indicated with a bright yellow underline and the items change colour when the mouse hovers over them to give the user immediate visual feedback.
+- **Simple Game Area** takes the player straight into the action of the game by presenting the casino card table look in an uncluttered way. Each player's cards are displayed in the relevant section.
+- **Control Buttons** are only visible when relevent to the play, e.g Deal or Hit & Stand.
+- **Info Button** is available at all times and allows the user to show instructions and strategy hints at any time during the game. This takes the form of an overlay with clear text on a light background.
+- **The Player's Stack** of is visible at all times and the betting chips are styled with a semblance of real casino chips.  The total value remaining is clearly diplayed, as is the currrent bet amount.
+- **System Messages** are short and to the point, e.g. Dealer busts or You win, and displyed clearly in the centre. 
     -   This allows the user to navigate intuitively between the site's pages
 <h2 align="center"><img src="readme-docs/header-wide.png"></h2>
 <h2 align="center"><img src="readme-docs/header-mobile.png"></h2>
    
 
 ## - Future Features -
+- Sound effects would enhance the experience - a subtle card-dealing sound, cards being shuffled etc.
+- Ability to split bet (an option in casinos where a player is dealt a pair and can then chose to effectively play both hands as independent bets)
 
 <!--  -->
 <!-- End Features -->
@@ -113,7 +117,8 @@ To fulfil the needs of the site owner and its users, the following features were
 1. [GitHub:](https://github.com/)
     - GitHub is used to store the project's code after being pushed from Git, and Github Pages used to deploy the live site
 1. [Google Fonts:](https://fonts.google.com/)
-    - Google font 'Raleway' was imported in the style.css file and used throughout the site.
+    - Google font 'Roboto Slab' was imported in the style.css file and used throughout the site.  
+    - Google font 'Lora' was imported in the style.css file and used for the site header.
 1. [Font Awesome:](https://fontawesome.com/)
     - Font Awesome was used to add icons for aesthetic and UX purposes.
 1. [Gimp:](https://www.gimp.org/)
@@ -184,7 +189,8 @@ Googe Lighthouse in Chrome DevTools was used after deployment to test the qualit
 
 ### Bugs
 
-1. fix: scr reader identified red suit as black char - hide frm reader
+1. A screen reader picked up the red card suits (Hearts & Diamonds) as black - e.g it read "black heart". This is because this is the full name the underlying HTML entity (see https://www.w3schools.com/charsets/ref_utf_symbols.asp). Note: there is a also a White Heart Suit entity which uses just the outline of the shapes. [ Thanks to my mentor Daisy McGirr for the screen reader test ]
+    - fix: disp red card to screen reader (bug: SR reads red suit as black) 
 1. fix: ensure that shufffling msg is seen by using modal
 1. fix: when five cards are drawn and not bust, dealer plays next
 1. fix: fix the way aces are calculated if draw ace and one in hand
