@@ -7,8 +7,7 @@ You can view the Blackjack live site [HERE.](https://davewatters.github.io/black
 <br />
 <br />
 <!-- Responsive desgin sample image from http://ami.responsivedesign.is/ -->
-#_TODO: Responsive desgin sample image from http://ami.responsivedesign.is/
-<h2 align="center"><img src="docs/ci-pp2-blackjack-responsive-mockup.png"></h2>
+<h2 align="center"><img src="readme-docs/ci-pp2-blackjack-responsive-mockup.png"></h2>
 
 ## - Table of Contents -
 * [Purpose](#purpose)
@@ -79,7 +78,7 @@ The site was built as a simple Blackjack game to be played just for fun.
     
     -   #### Wireframes
         I did not create wireframes with software like Balsamiq, but I have decided to include pictures of my pencil sketches of my layout design process.  These do not necessarily represent the final look of the site pages, but are presented here to show how I went about fleshing out my initial thoughts and ideas about how to structure the site before a line of code was written.
-<h2 align="center"><img src="docs/wf-main-screen-mobile.jpg"></h2>
+<h2 align="center"><img src="readme-docs/wf-main-screen-mobile.jpg"></h2>
 
 ## - Features -
 To fulfil the needs of the site owner and its users, the following features were implemented:
@@ -88,8 +87,8 @@ To fulfil the needs of the site owner and its users, the following features were
 
 -   **Navigation Bar** contains the site name/logo and links to the Home, Events and SingUp pages. It is identical on, and positioned at, the top of all pages. It is fully responsive on different device sizes. The currently selected page is indicated with a bright yellow underline and the items change colour when the mouse hovers over them to give the user immediate visual feedback.
     -   This allows the user to navigate intuitively between the site's pages
-<h2 align="center"><img src="docs/header-wide.png"></h2>
-<h2 align="center"><img src="docs/header-mobile.png"></h2>
+<h2 align="center"><img src="readme-docs/header-wide.png"></h2>
+<h2 align="center"><img src="readme-docs/header-mobile.png"></h2>
    
 
 ## - Future Features -
@@ -154,33 +153,44 @@ To fulfil the needs of the site owner and its users, the following features were
         -   I tested to ensure photos and videos of previous events was present on the events page. Video playback was tested.
 
 ### Code Validation
-The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri) and [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) services were used to validate every page of the project for syntax errors. **NOTE: All validation was re-run after fixing any errors shown below to ensure that no further errors or warnings existed.**
+The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri), [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) and the [JSHint JavaScript Code Quality Tool](https://jshint.com) were used to validate every page of the project for syntax errors. **NOTE: All validation was re-run after fixing any errors shown below to ensure that no further errors or warnings existed.**
 
-- #_TODO: JSHint validation
+-   index.html: incorrect use of aria-label was #_TODO
+<h2 align="center"><img src="readme-docs/w3c-validator-html-index.png"></h2>
 
--   style.css: two stray commas were found and deleted
-<h2 align="center"><img src="docs/w3c-validator-css-style.png"></h2>
+-   style.css: no errors were found
+<h2 align="center"><img src="readme-docs/w3c-validator-css-style.css.png"></h2>
+
+- JSHint validation: four warnings, three unused variables
+<h2 align="center"><img src="readme-docs/jshint-1_script.js.png"></h2>
 
 ### Responsiveness
 - Chrome DevTools and a Chrome extension, [Unicorn Revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB), were used to check responsiveness on various device sizes. 
-<h2 align="center"><img src="docs/testing-responsive-320.png"></h2>
+<h2 align="center"><img src="readme-docs/test-responsive-320.png"></h2>
+<!-- <h2 align="center"><img src="readme-docs/test-responsive-900.png"></h2> -->
 
 ### Colour Scheme
 The colour scheme was tested using this [Contrast Grid Test](https://contrast-grid.eightshapes.com)
 and, as explained previously in the Design - [Colour Scheme](#colour-scheme) section, my decision was based on the results shown here:
-<h2 align="center"><img src="docs/contrast-grid.png"></h2>
+<h2 align="center"><img src="readme-docs/wcag-contrast-grid.png"></h2>
 
 -   The Website was tested on Firefox, Safari, Chrome and Edge browsers.
 -   The website was viewed on a variety of mobile devices such as iPhone7, iPhone 8 & iPhoneX.
 
 ### Further Testing
-Googe Lighthouse in Chrome DevTools was used after deployment to test the quality and performance of the site.  Initial results were 
-<h2 align="center"><img src="docs/google-lighthouse-audit.png"></h2>
+Googe Lighthouse in Chrome DevTools was used after deployment to test the quality and performance of the site. Results were very satisfactory for Performance (99), Accessibility (100), Best Practises (100) and SEO (100).
+<h2 align="center"><img src="readme-docs/google-lighthouse-audit.png"></h2>
 
 
 ### Bugs
 
-1.  
+1. fix: scr reader identified red suit as black char - hide frm reader
+1. fix: ensure that shufffling msg is seen by using modal
+1. fix: when five cards are drawn and not bust, dealer plays next
+1. fix: fix the way aces are calculated if draw ace and one in hand
+
+
+
 <!---  --->
 <!--- end of testing section --->
 <!---  --->
@@ -210,10 +220,20 @@ After final `git push` to the project repo
 ## - Credits -
 
 ### Code
+- I used the following for inspiration and code suggestions:  
+[Stackoverflow](https://stackoverflow.com)  
+[https://www.thatsoftwaredude.com](https://www.thatsoftwaredude.com)  
+[https://brilliant.org/wiki/programming-blackjack/](https://brilliant.org/wiki/programming-blackjack/)  
+- README.md - I used the readme from my first protfolio project as a template.
+
 ### Content
+- I plucked content ideas from a number of sources:  
+[https://bicyclecards.com/how-to-play/blackjack/](https://bicyclecards.com/how-to-play/blackjack/)  
+[https://www.247blackjack.com/](https://www.247blackjack.com/)  
+
 
 ### Acknowledgements
 
 -   My mentor [Daisy McGirr](https://github.com/Daisy-McG) for all her helpful feedback and knowledge.
--   The Code Institute community on Slack and the CI staff and students
+-   The Code Institute community on Slack and the CI staff and students for their feedback and support.
 

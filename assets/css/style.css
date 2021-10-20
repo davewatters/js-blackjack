@@ -296,7 +296,7 @@ footer {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: rgba(238, 244, 244, 0.8);
+  background-color: rgba(238, 244, 244, 0.8);  /* #eef4f4 */
   border: 3px solid #edda1c;
   border-radius: 4px;
   color: black;
