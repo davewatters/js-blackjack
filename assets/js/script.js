@@ -143,10 +143,12 @@ function newHand() {
     shuffleDeck();
   }
 
-  statusMsg("");
   if (autoLastBet) {
     betAmt = lastBet;
-    betMsg("Auto bet: €" +betAmt);
+    if (!betAmt) {
+      statusMsg("Place your bet");
+    }
+    betMsg("Auto bet: " +betAmt);
     if (betAmt <= player.stack) {
       player.stack -= betAmt
       document.getElementById('stack').textContent = player.stack;
@@ -172,7 +174,7 @@ function placeBet(chipVal) {
   betAmt += chipVal;
   if (betAmt <= player.stack) {
     player.stack -= chipVal;
-    betMsg("You bet: €" +betAmt);
+    betMsg("You bet: " +betAmt);
     document.getElementById('stack').textContent = player.stack;
   } else {
     statusMsg("You can't afford that bet!");
