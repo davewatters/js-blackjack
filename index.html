@@ -111,6 +111,54 @@
   </div>
   <!-- End Game Info Modal -->
 
+  <!-- Game Settings screen -->
+  <div id="modal-settings" class="modal">
+    <div class="modal-content">
+      <span id="btn-close-modal-settings" class="btn-close-modal" aria-label="settings close button">[&times;]</span>
+      <h2>Game Settings</h2>
+
+      <div class="input-wrapper">
+        <div id="set-decks" class="flex-row flex-ai-c">
+          <div class="input-txt"><h3>Decks in play:</h3></div>
+          <div class="input-lbl">          
+            <label for="decks1">1</label>
+            <input type="radio" name="set-decks" id="decks1" checked>
+            <label for="decks2">2</label>
+            <input type="radio" name="set-decks" id="decks2">
+            <label for="decks4">4</label>
+            <input type="radio" name="set-decks" id="decks4">
+            <label for="decks6">6</label>
+            <input type="radio" name="set-decks" id="decks6">
+          </div>
+        </div>
+
+        <div id="set-autobet" class="flex-row flex-ai-c">
+          <div class="input-txt"><h3>Auto Last Bet:</h3></div>
+          <div class="input-lbl">
+            <label for="autobet-on">On</label>
+            <input type="radio" name="set-autobet" id="autobet-on" checked>
+            <label for="autobet-off">Off</label>
+            <input type="radio" name="set-autobet" id="autobet-off">
+          </div>
+        </div>
+
+        <div id="set-startstack"  class="flex-row flex-ai-c">
+          <div class="input-txt flex-jc-fe"><h3>Player's Stack:</h3></div>
+          <div class="input-lbl">
+            <label for="stack-600">600</label>
+            <input type="radio" name="startstack" id="stack-600" checked>
+            <label for="stack-1200">1200</label>
+            <input type="radio" name="startstack" id="stack-1200">
+            <label for="stack-4800">1600</label>
+            <input type="radio" name="startstack" id="stack-4800">
+            <label for=""></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Settings Modal -->
+
   <!-- Footer -->
   <footer class="flex-row">
     <p>Copyright &copy; 2021 David Watters</p>

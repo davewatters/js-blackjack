@@ -332,6 +332,26 @@ footer {
   width: 80%;
 }
 
+.input-wrapper {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.input-lbl, .input-txt {
+  width: 50%;
+  padding: 1rem;
+}
+
+.input-txt {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem;
+}
+
+input[type="radio"]{
+  margin: 0 12px 0 2px;
+}
+
 /* 
 * Media queries for responsive design
 */

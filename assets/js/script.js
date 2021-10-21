@@ -63,6 +63,7 @@ function toggleBetting() {
   statusMsg("Welcome");
   betMsg("");
   document.getElementById('btn-play').style.display = 'block';
+  document.getElementById('btn-settings').style.display = 'block';
 }
 
 /**
@@ -161,7 +162,6 @@ function newHand() {
   if (!gameOver) {
     document.getElementById('btn-deal').style.display = 'block';
   } else {
-    // document.getElementById('btn-settings').style.display = 'block';
     document.getElementById('btn-reset').style.display = 'block';
   }
 }
@@ -265,7 +265,6 @@ function dealCard(p) {
     }
   }
   displayCard(p);
-
 }
 
 /**
@@ -388,6 +387,7 @@ function sleep(ms) {
 */
 document.getElementById("btn-play").addEventListener("click", function() {
   this.style.display = 'none';
+  document.getElementById("btn-settings").style.display = 'none';
   shuffleDeck();
   newHand();
   toggleBetting();
@@ -438,7 +438,7 @@ document.getElementById("btn-again").addEventListener("click", function() {
 
 document.getElementById("btn-reset").addEventListener("click", function() {
   this.style.display = 'none';
-  // document.getElementById('btn-settings').style.display = 'none';
+  document.getElementById('btn-settings').style.display = 'none';
   resetGame();
 });
 
@@ -449,6 +449,17 @@ document.getElementById("btn-info").addEventListener("click", function() {
 
 document.getElementById("btn-close-modal-info").addEventListener("click", function() {
   document.getElementById("modal-info").style.display = 'none';
+});
+
+document.getElementById("btn-settings").addEventListener("click", function() {
+  document.getElementById("modal-settings").style.display = 'block';
+});
+
+document.getElementById("btn-close-modal-settings").addEventListener("click", function() {
+  document.getElementById("modal-settings").style.display = 'none';
+  //
+  // Code to set user setting vars goes here
+  //
 });
 
 /* ********************************************************** */
