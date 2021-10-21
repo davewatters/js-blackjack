@@ -52,7 +52,7 @@ p {
 footer {
   align-items: center;
   font-size: small;
-  height: 4rem;
+  /* height: 5rem; */
 }
 
 .btn {
@@ -73,39 +73,22 @@ footer {
   cursor: pointer;
 }
 
-#btn-play{
+#btn-play {
   display: block;
 }
-#btn-settings{
-  display: none;
 
-}
-#btn-about{
-  display: none;
-}
-
-#btn-hit {
-  display: none;
-}
-
-#btn-deal {
-  display: none;
-}
-
-#btn-stay {
-  display: none;
-}
-
-#btn-again{
+#btn-settings,
+#btn-about,
+#btn-hit,
+#btn-deal,
+#btn-stay,
+#btn-again,
+#btn-reset {
   display: none;
 }
 
 #btn-info {
   min-width: unset;
-}
-
-#btn-reset {
-  display: none;
 }
 
 /* 
@@ -156,7 +139,7 @@ footer {
 }
 
 #controls-section {
-  height: 10%;
+  height: 6rem;
   width: 100%;
 }
 
@@ -409,6 +392,16 @@ input[type="radio"]{
     padding-top: 2.5rem;
     padding-left: 4px;
   }
+
+  .modal-content {
+    margin: 5% auto;
+  }
+
+  h1 {
+    font-size: 4rem;
+    letter-spacing: 1px;
+  }
+
 }
 
 /* For screen sizes 1200px and up */
@@ -417,7 +410,8 @@ input[type="radio"]{
       justify-content: space-evenly;
     }
     
-    .modal-content {
-      margin: 5% auto;
+    h1 {
+      font-size: 4.5rem;
+      letter-spacing: 1.5px;
     }
   }
