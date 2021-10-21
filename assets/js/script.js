@@ -147,14 +147,14 @@ function newHand() {
     shuffleDeck();
   }
 
+  statusMsg("Place your bet");
+  betAmt = 0;
+  betMsg("You bet: " +betAmt);
   if (autoLastBet) {
     betAmt = lastBet;
-    if (!betAmt) {
-      statusMsg("Place your bet");
-    }
     betMsg("Auto bet: " +betAmt);
     if (betAmt <= player.stack) {
-      player.stack -= betAmt
+      player.stack -= betAmt;
       document.getElementById('stack').textContent = player.stack;
     } else {
       statusMsg("You can't afford to bet!");
@@ -300,7 +300,7 @@ function checkScore(p) {
         payout = betAmt;
       } else {
         s = "You hit blackjack!";
-        win = (betAmt * 1.5)
+        win = (betAmt * 1.5);
         payout = betAmt + win;
         b = "You win: " +win;
       }

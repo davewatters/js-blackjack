@@ -23,6 +23,8 @@
   --card-back-colour: #00f; /* playing card reverse */
   --text-font-size: 1.6rem;
   --btn-font-size: 1.6rem;
+  --btn-colour: #9acd32;
+  --btn-active-colour: #aaff01;
 }
 
 html {
@@ -54,7 +56,7 @@ footer {
 }
 
 .btn {
-  background-color: yellowgreen;
+  background-color: var(--btn-colour);
   border: 2px solid black;
   border-radius: 4px;
   font-family: inherit;
@@ -67,7 +69,7 @@ footer {
 }
 
 .btn:hover, .btn:focus {
-  background-color: rgb(170, 255, 1);
+  background-color: var(--btn-active-colour);
   cursor: pointer;
 }
 
@@ -107,7 +109,7 @@ footer {
 }
 
 /* 
-* Global colour styles
+* Global text colour styles
 */
 .score-colour {
   font-size: x-large;
@@ -297,7 +299,7 @@ footer {
 /* Modal Content/Box */
 .modal-content {
   background-color: rgba(238, 244, 244, 0.8);  /* #eef4f4 */
-  border: 3px solid #edda1c;
+  border: 3px solid var(--btn-colour);
   border-radius: 4px;
   color: black;
   display: flex;
@@ -314,7 +316,7 @@ footer {
 
 .btn-close-modal:hover,
 .btn-close-modal:focus {
-  color: #edda1c;
+  color: var(--btn-active-colour);
   text-decoration: none;
   cursor: pointer;
 }
@@ -414,4 +416,8 @@ input[type="radio"]{
     #centre-container {
       justify-content: space-evenly;
     }
-}
+    
+    .modal-content {
+      margin: 5% auto;
+    }
+  }
