@@ -25,7 +25,7 @@ const dealer = {
 // Initialise default settings vars
 let numDecks = 1;
 let maxCards = 52;
-let autoLastBet = true;
+let autoLastBet = false;
 let defaultStack = 1200;
 
 // Default new in-game vars
@@ -33,7 +33,9 @@ let betAmt = 0;
 let lastBet = 0;
 let gameOver = false;
 
-// Add event listeners to player's betting chip buttons
+/**
+ * Add event listeners to player's betting chip buttons
+ */
 let chips = document.getElementsByClassName("chip");
 for (let chip of chips) {
   chip.addEventListener("click", function() {
@@ -61,7 +63,8 @@ function toggleBetting() {
   betAmt = 0;
   lastBet = 0;
   statusMsg("Welcome");
-  betMsg("");
+  betMsg("Auto Last Bet: " + (autoLastBet ? 'On' : 'Off'));
+  document.getElementById('stack').textContent = player.stack;
   document.getElementById('btn-play').style.display = 'block';
   document.getElementById('btn-settings').style.display = 'block';
 }
@@ -457,9 +460,28 @@ document.getElementById("btn-settings").addEventListener("click", function() {
 
 document.getElementById("btn-close-modal-settings").addEventListener("click", function() {
   document.getElementById("modal-settings").style.display = 'none';
-  //
-  // Code to set user setting vars goes here
-  //
+
+  if (document.getElementById('decks1').checked) {
+    numDecks = 1;
+  } else if (document.getElementById('decks2').checked) {
+    numDecks = 2;
+  } else if (document.getElementById('decks4').checked) {
+    numDecks = 4;
+  } else if (document.getElementById('decks6').checked) {
+    numDecks = 6;
+  }
+
+  autoLastBet = document.getElementById('autobet-on').checked ? true : false;
+
+  if (document.getElementById('stack600').checked) {
+    defaultStack = 600;
+  } else if (document.getElementById('stack1200').checked) {
+    defaultStack = 1200;
+  } else if (document.getElementById('stack2400').checked) {
+    defaultStack = 2400;
+  }
+
+  resetGame();
 });
 
 /* ********************************************************** */
