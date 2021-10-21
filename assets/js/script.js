@@ -9,7 +9,6 @@ const card = {
   weight: 0,
 };
 const deck = [];
-const hand = [];
 const player = {
   id: 1,
   stack: 0,
@@ -36,9 +35,9 @@ let gameOver = false;
 /**
  * Add event listeners to player's betting chip buttons
  */
-let chips = document.getElementsByClassName("chip");
-for (let chip of chips) {
-  chip.addEventListener("click", function() {
+let elChip = document.getElementsByClassName("chip");
+for (let el of elChip) {
+  el.addEventListener("click", function() {
     placeBet( parseInt(this.textContent) );
   });
 }
@@ -204,7 +203,6 @@ function dealHands() {
 function displayCard(p) {
   let numCards = p.hand.length;
   let card = p.hand[numCards-1];
-  let weight = card.weight;
 
   let cDiv = document.createElement("div");
   cDiv.innerHTML = '<p class="card-rank">'+card.rank+'</p>' + '<p class="suit-big">'+card.suit+'</p>';
@@ -341,7 +339,7 @@ function checkScore(p) {
         s = "Player wins!";
         win = betAmt;
         payout = betAmt + win;
-        b = "You win: €" +win;
+        b = "You win: " +win;
       }
       handOver = true;
     }
@@ -356,33 +354,17 @@ function checkScore(p) {
 }
 
 /**
- * Updates the text message in the game status div
+ * Updates the text message in the game status div.
  */
  function statusMsg(msg) {
   document.getElementById('status').textContent = msg;
 }
 
 /**
- * Updates the text message in the bet div
+ * Updates the text message in the bet div.
  */
  function betMsg(msg) {
   document.getElementById('bet').textContent = msg;
-}
-
-/*
-* Need a way of delaying action while I display  message to the player 
-* might not use this
-*/
-function sleep(ms) {
-  let start = new Date().getTime();
-  let now;
-  while ( true ) {
-    now = new Date().getTime();
-    let elapsed = now - start;
-    if (elapsed > ms) {
-      break;
-    } 
-  }
 }
 
 /*
@@ -441,7 +423,6 @@ document.getElementById("btn-again").addEventListener("click", function() {
 
 document.getElementById("btn-reset").addEventListener("click", function() {
   this.style.display = 'none';
-  document.getElementById('btn-settings').style.display = 'none';
   resetGame();
 });
 

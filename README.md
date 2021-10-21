@@ -21,7 +21,7 @@ You can view the Blackjack live site [HERE.](https://davewatters.github.io/black
 ## - Purpose -
 [ This website was created as the second Portfolio Project (PP2) for the Code Institute's Full Stack Web Development course. ]
 
-The site was built as a simple Blackjack game to be played just for fun. To that end, it was kept simple - uncluttered and uncomplicated. It was designed to appeal to both novices and seasoned card players alike, so it feetures a betting function with an available stack of chips - however, no actual real money is gambled.  The thrills of the of the ups and downs of each round of betting is allowed to happen easily by a design which keeps the options simple and enables the player to quickly move the action along.
+The site was built as a simple Blackjack game to be played just for fun. To that end, it was kept simple - uncluttered and uncomplicated. It was designed to appeal to both novices and seasoned card players alike, so it features a betting function with an available stack of chips - however, no actual real money is gambled.  The thrills of the of the ups and downs of each round of betting is allowed to happen easily by a design which keeps the options simple and enables the player to quickly move the action along. Settings can be changed to increase the difficulty.  The site was designed using a
 
 As a requirement for a portfolio project it is built as a responsive, interactive, front-end web site using HTML & CSS, and showcasing JavaScript skills.  
 
@@ -30,8 +30,8 @@ As a requirement for a portfolio project it is built as a responsive, interactiv
 -   ### User stories
 
     -   ### Design Strategy Goals
-        -    Create a simple onine Blackjack card game
-        -    Site must be intuitive to read & navigate on both desktop & mobile devices
+        -    Create a simple onine Blackjack card game which will appeal to wide range of users
+        -    Site must be intuitive to read & navigate on both desktop & mobile devices - using Mobile First design
 
     -   ### Design Scope to Deliver MVP
         -   #### First Time Visitor Goals
@@ -53,8 +53,7 @@ As a requirement for a portfolio project it is built as a responsive, interactiv
 
 -   ### Design
     -   #### Layout
-        #_TODO
-        The game is to be kept simple and presented on the main landing page. This is also to be the game play area. Additional information like instructions, game rules or configurable settings should appear as a clear overlay of the main game area without navigating away from the page. 
+        The game is to be kept simple and presented on the main landing page. This is also to be the game play area. Additional information like instructions, game rules or configurable settings should appear as a clear overlay of the main game area without navigating away from the page. Using mobile-first design meant that everything necessary for game play, information and settings is compact, easily accessible and readable.
 
     -   #### Colour Scheme
         The default background was chosen to resemble a casino card table's green baize. The colour scheme then had to work and contrast with that. White text is what works best against this green and a much brighter green was then chosen for the control buttons, and an even brighter lime-green for their highlighting. The main focus of the game are the cards and stack of chips, so these were made to look as close in style of real cards and casino chips are possible using standard colours (e.g. blue, orange etc.). Built-in HTML entities (&spades;, &diams;  etc.) were used to depict a simple card instead of using elaborate graphics. All of the colours have 'AAA' WCAG 2.0 contrast scores. The results of the colour contrast testing are included in the [Testing](#testing) section below.
@@ -89,6 +88,7 @@ To fulfil the needs of the site's users, the following features were implemented
     - This fulfills the user's thrills of winning or losing bets against the dealer.
 - **System Messages** are short and to the point, e.g. Dealer busts or You win, and displyed clearly in the centre. 
     -   This allows the user to navigate intuitively between the site's pages
+- **Settings** 
 <h2 align="center"><img src="readme-docs/header-wide.png"></h2>
 <h2 align="center"><img src="readme-docs/header-mobile.png"></h2>
    
@@ -128,34 +128,33 @@ To fulfil the needs of the site's users, the following features were implemented
 1. [TinyPNG:](https://tinypng.com/)
     - tinypng.com was used to compress large images
 
+
+<!---  --->
+<!---  Begin testing section --->
+<!---  --->
+
 ## - Testing -
 ### UX Goals, User Stories
 
--- #_TODO: All of the followig to be changed and made relevant 
-
 -   #### As a first time user...
-    -  I want to easily understand the main purpose of the site and learn more about the organisation
-        -   The main landing page was checked to ensure it explains the purpose of the allows the visitor to explore for more information 
-    -  I want to be able to easily navigate throughout the site to find content
-        - The navigation links were checked on each page to ensure that they take the user to the intended page or section and there were no broken links 
-    -  I want to find their social media links to connect and follow event news
-        - Each page was checked to confirm that the footer contained the same links and that they would open the event's page on the correct media platform in a new browser window.
+    -  I want to be able to intuitively navigate the site
+        -   I tested to ensure that all of the buttons link to their intended functions. The game play buttons only appear when required - e.g Deal once the bet is placed or Hit & Stand when the initial two cards are dealt. Only two take the the user to a different page - the Info & Settings buttons. These are overlay pages. I tested to ensure that the user could open them easily and return to the previous page on closing them.
+    -  I want to easily find instructions to understand how to use the site
+        - I tested to ensure that the Info button is always visible and takes the user to the page of instructions. 
+    -  I want to be able to easily & quickly play the game
+        - I tested to ensure that the Play button to start the game is visible on the main screen. When clicked it begins the round of dealing by waiting for the user to place a bet. I tested that the user can click on the chips to add that amount to this bet. Wen the user is ready to play and clicks Deal, I tested that initially two cards are dealt to both the player and the dealer, with the dealer's second card displayed face down. I tested that the optins now available are to either Hit for another card or Stand for the dealer to play. I tested that the dealer's hand plays out until the one of three outcomes: win, lose or draw. The relevant status message is displayed and play returns to the player placing a bet for the next round 
+    -   I want the site to be visually clear & appealing  
+        - I tested to ensure that the game play resembles a card table and that the cards are clearly displayed for each stage of the round. Status messages are presented after each action. The betting buttons are also rendered to look like casino chips. The relevant action buttons appear when required.   
 
 -   #### As a returning visitor...
-    -  I want to be able to easily register my interest in attending an event
-        -   The signup registration form was tested to ensure that the user could complete and submit it in a few easy steps. It was also tested to ensure the user could not submit with out filling in the three required contact fields. 
-    -  I want to find the best way to get in contact with the organisers with any questions or suggestions I may have
-        -   The signup/feedback form was tested to ensure that the user could submit a custom message
-    -  I want to be able to view the site clearly on a mobile device
-        -   Testing was done to ensure that the site was responsive on all device screen sizes and that the information was clear and accesible.
+    -   I want to be able to quickly play the game
+        - The game was tested to ensure that it is playable using the default settings within one click. 
+    -   I want to be able to view and play the game on a mobile device
+        -  Testing was done to ensure that the site was responsive on all device screen sizes and that the information was clearly readable and accesible.
 
 -   #### As a frequent user...
-    -  I want to to see if there are any new events happening
-        -   I tested to ensure that upcoming event news was shown on the events page
-    -  I want to to see if there are any updates on a forthcoming event
-        -   I tested to ensure that updates on upcoming events was shown on the events page
-    -  I want to see any new photos or videos of previous events or realted acitivites
-        -   I tested to ensure photos and videos of previous events was present on the events page. Video playback was tested.
+    -   I want to to be able to increase the difficulty level of the game to make play more exciting  
+        - I tested to ensure that the game settings could be changed to make the game more difficult - e.g. the munber of decks of cards in play can be increased and the sarting amount of the betting stack.
 
 ### Code Validation
 The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri), [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) and the [JSHint JavaScript Code Quality Tool](https://jshint.com) were used to validate every page of the project for syntax errors. **NOTE: All validation was re-run after fixing any errors shown below to ensure that no further errors or warnings existed.**
@@ -166,8 +165,9 @@ The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri), [W3C CSS 
 -   style.css: no errors were found
 <h2 align="center"><img src="readme-docs/w3c-validator-css-style.css.png"></h2>
 
-- JSHint validation: four warnings, three unused variables
+- script.js: four warnings, three unused variables. These were addressed and retested. Warning for Line 1 is not relevant to this project. The warning for line 40 can be ignored as it does not cause any confusing semantics in this project. (First and second test images shown below)
 <h2 align="center"><img src="readme-docs/jshint-1_script.js.png"></h2>
+<h2 align="center"><img src="readme-docs/jshint-2_script.js.png"></h2>
 
 ### Responsiveness
 - Chrome DevTools and a Chrome extension, [Unicorn Revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB), were used to check responsiveness on various device sizes. 
@@ -189,13 +189,11 @@ Googe Lighthouse in Chrome DevTools was used after deployment to test the qualit
 
 ### Bugs
 
-1. A screen reader picked up the red card suits (Hearts & Diamonds) as black - e.g it read "black heart". This is because this is the full name the underlying HTML entity (see https://www.w3schools.com/charsets/ref_utf_symbols.asp). Note: there is a also a White Heart Suit entity which uses just the outline of the shapes. [ Thanks to my mentor Daisy McGirr for the screen reader test ]
-    - fix: disp red card to screen reader (bug: SR reads red suit as black) 
-1. fix: ensure that shufffling msg is seen by using modal
-1. fix: when five cards are drawn and not bust, dealer plays next
-1. fix: fix the way aces are calculated if draw ace and one in hand
-
-
+1. A screen reader picked up the red card suits (Hearts & Diamonds) as black - e.g it read "black heart". This is because this is the full name the underlying HTML entity (see https://www.w3schools.com/charsets/ref_utf_symbols.asp). Note: there is a also a White Heart Suit entity which uses just the outline of the shapes. [ Thanks to my mentor Daisy McGirr for mentioning the screen reader test ]
+    - to fix: disp red card to screen reader (bug: SR reads red suit as black) 
+1. to fix: ensure that shufffling msg is seen by using modal
+1. to fix: when five cards are drawn and not bust, dealer plays next
+1. to fix: fix the way aces are calculated if draw ace and one in hand
 
 <!---  --->
 <!--- end of testing section --->
