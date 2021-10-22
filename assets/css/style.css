@@ -37,6 +37,7 @@ body {
   color: #fff;
   font-family: var(--text-font-family, Georgia, Times, serif);
   font-size: var(--text-font-size);
+  text-shadow: black 1px 3px 4px; color offset-x offset-y blur-radius  
 }
 
 h1 {
@@ -91,18 +92,12 @@ footer {
   min-width: unset;
 }
 
-/* 
-* Global text colour styles
-*/
-.score-colour {
+.score {
   font-size: x-large;
-  color: white;
 }
 
 .msg-text {
   font-size: large;
-  color: white;
-  text-shadow: black 0px 0px 4px; /* color offset-x offset-y blur-radius */  
 }
 
 /* 
