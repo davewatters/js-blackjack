@@ -227,7 +227,6 @@ After final `git push` to the project repo
 1.  A message will confirm that the site has been published at `https://YOUR-GITHUB-NAME.github.io/REPO-NAME/`
 1.  Test that the site has successfully gone live by clicking on the link
 
-#_TODO: Add a How to Fork
 
 ## - Credits -
 
