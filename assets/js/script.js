@@ -282,13 +282,6 @@ function checkScore(p) {
   if (p.id) {
     // Player
 
-    // check if player dealt blackjack
-    // if yes > then turnover dealer card
-    // check if dealer also has blackjack
-    // if yes> draw, bet returned
-    // if no > player wins > pay bet + (win = bet * 1.5)
-    // handover = true
-
     // check for blackjack
     if (cardCount === 2 && p.score === 21) {
       turnDealerCard(dealer.hand);
@@ -413,7 +406,7 @@ document.getElementById("btn-stay").addEventListener("click", function() {
   document.getElementById('btn-again').style.display = 'block';  
 });
 
-// 'Again' btn and event listener required to allow the last play to
+// Again btn and event listener required to allow the last play to
 // remain visible on screen until player is ready for next hand  
 document.getElementById("btn-again").addEventListener("click", function() {
   this.style.display = 'none';
