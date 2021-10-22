@@ -74,28 +74,42 @@ As a requirement for a portfolio project it is built as a responsive, interactiv
     
     -   #### Wireframes
         I did not create wireframes with software like Balsamiq, but I have decided to include pictures of my pencil sketches of my layout design process.  These do not necessarily represent the final look of the site pages, but are presented here to show how I went about fleshing out my initial thoughts and ideas about how to structure the site before a line of code was written.
-<h2 align="center"><img src="readme-docs/wf-main-screen-mobile.jpg"></h2>
+<h2 align="center"><img src="readme-docs/wf-main-mobile.jpg"></h2>
+<h2 align="center"><img src="readme-docs/wf-main-wide.jpg"></h2>
+<h2 align="center"><img src="readme-docs/wf-main-divs.jpg"></h2>
+<h2 align="center"><img src="readme-docs/wf-main-settings.jpg"></h2>
 
 ## - Features -
 To fulfil the needs of the site's users, the following features were implemented:
 
-#_TODO
+- **Simple Game Area** takes the player straight into the action of the game by presenting the casino card table look in an uncluttered way. Once play commences, each player's cards are displayed in the relevant section.
+<h2 align="center"><img src="readme-docs/welcome-mobile.png"></h2>
+<h2 align="center"><img src="readme-docs/inplay-mobile.png"></h2>  
 
-- **Simple Game Area** takes the player straight into the action of the game by presenting the casino card table look in an uncluttered way. Each player's cards are displayed in the relevant section.
 - **Control Buttons** are only visible when relevent to the play, e.g Deal or Hit & Stand.
-- **Info Button** is available at all times and allows the user to show instructions and strategy hints at any time during the game. This takes the form of an overlay with clear text on a light background.
+<h2 align="center"><img src="readme-docs/hit-or-stand.png"></h2>
+
+- **Info Button** is available at all times and allows the user to show instructions and strategy hints at any time during the game. This takes the form of an overlay with clear text on a light background. As can be seen from the above images, the button is accessible throughout the game play. The information is then presented clearly to the user, as shown below.
+    - This allows the user to easily find instructions to understand how to use the site.
+<h2 align="center"><img src="readme-docs/info.png"></h2>
+
 - **Betting** The player's stack is visible at all times and the betting chips are styled with a semblance of real casino chips.  The total value remaining is clearly diplayed, as is the currrent bet amount.
     - This fulfills the user's thrills of winning or losing bets against the dealer.
+<h2 align="center"><img src="readme-docs/bet-deal.png"></h2>
+
 - **System Messages** are short and to the point, e.g. Dealer busts or You win, and displyed clearly in the centre. 
-    -   This allows the user to navigate intuitively between the site's pages
-- **Settings** 
-<h2 align="center"><img src="readme-docs/header-wide.png"></h2>
-<h2 align="center"><img src="readme-docs/header-mobile.png"></h2>
-   
+    -   This allows the user to navigate the site intuitively, in this case between the game's stages of play.
+<h2 align="center"><img src="readme-docs/you-hit-blackjack-small.png"></h2>
+<h2 align="center"><img src="readme-docs/bet-deal.png"></h2>
+
+- **Settings** were kept to a few simple choices which allow for increased game complexity. The sttings can be accessed before play begins and the user only needs to chose from some radio button optiions.
+    - This allows the user to be able to increase the difficulty level of the game to make play more exciting.
+<h2 align="center"><img src="readme-docs/settings-btn.png"></h2>  
+<h2 align="center"><img src="readme-docs/settings.png"></h2>  
 
 ## - Future Features -
 - Sound effects would enhance the experience - a subtle card-dealing sound, cards being shuffled etc.
-- Ability to split bet (an option in casinos where a player is dealt a pair and can then chose to effectively play both hands as independent bets)
+- Ability to double down and split bet (an option in casinos where a player is dealt a pair and can then chose to effectively play both hands as independent bets).
 
 <!--  -->
 <!-- End Features -->
@@ -117,17 +131,11 @@ To fulfil the needs of the site's users, the following features were implemented
 1. [GitHub:](https://github.com/)
     - GitHub is used to store the project's code after being pushed from Git, and Github Pages used to deploy the live site
 1. [Google Fonts:](https://fonts.google.com/)
-    - Google font 'Roboto Slab' was imported in the style.css file and used throughout the site.  
-    - Google font 'Lora' was imported in the style.css file and used for the site header.
+    - Google font(s) were imported in the style.css file and used throughout the site.  
 1. [Font Awesome:](https://fontawesome.com/)
-    - Font Awesome was used to add icons for aesthetic and UX purposes.
-1. [Gimp:](https://www.gimp.org/)
-    - Gimp was used to edit and retouch photos for the website.
-1. [Birme:](https://www.birme.net/)
-    - birme.net was used to resize images.
+    - Font Awesome was used to add icons for aesthetic and UX purposes.   
 1. [TinyPNG:](https://tinypng.com/)
     - tinypng.com was used to compress large images
-
 
 <!---  --->
 <!---  Begin testing section --->
@@ -142,7 +150,7 @@ To fulfil the needs of the site's users, the following features were implemented
     -  I want to easily find instructions to understand how to use the site
         - I tested to ensure that the Info button is always visible and takes the user to the page of instructions. 
     -  I want to be able to easily & quickly play the game
-        - I tested to ensure that the Play button to start the game is visible on the main screen. When clicked it begins the round of dealing by waiting for the user to place a bet. I tested that the user can click on the chips to add that amount to this bet. Wen the user is ready to play and clicks Deal, I tested that initially two cards are dealt to both the player and the dealer, with the dealer's second card displayed face down. I tested that the optins now available are to either Hit for another card or Stand for the dealer to play. I tested that the dealer's hand plays out until the one of three outcomes: win, lose or draw. The relevant status message is displayed and play returns to the player placing a bet for the next round 
+        - I tested to ensure that the Play button to start the game is visible on the main screen. When clicked it begins the round of dealing by waiting for the user to place a bet. I tested that the user can click on the chips to add that amount to this bet. When the user is ready to play and clicks Deal, I tested that initially two cards are dealt to both the player and the dealer, with the dealer's second card displayed face down. I tested that the optins now available are to either Hit for another card or Stand for the dealer to play. I tested that the dealer's hand plays out until the one of three outcomes: win, lose or draw. The relevant status message is displayed and play returns to the player placing a bet for the next round 
     -   I want the site to be visually clear & appealing  
         - I tested to ensure that the game play resembles a card table and that the cards are clearly displayed for each stage of the round. Status messages are presented after each action. The betting buttons are also rendered to look like casino chips. The relevant action buttons appear when required.   
 
@@ -154,12 +162,12 @@ To fulfil the needs of the site's users, the following features were implemented
 
 -   #### As a frequent user...
     -   I want to to be able to increase the difficulty level of the game to make play more exciting  
-        - I tested to ensure that the game settings could be changed to make the game more difficult - e.g. the munber of decks of cards in play can be increased and the sarting amount of the betting stack.
+        - I tested to ensure that the game settings could be changed to make the game more difficult - e.g. the nunber of decks of cards in play can be increased and the starting amount of the betting stack.
 
 ### Code Validation
 The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri), [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) and the [JSHint JavaScript Code Quality Tool](https://jshint.com) were used to validate every page of the project for syntax errors. **NOTE: All validation was re-run after fixing any errors shown below to ensure that no further errors or warnings existed.**
 
--   index.html: incorrect use of aria-label was #_TODO
+-   index.html: incorrect use of aria-label was flagged. This was initially coded because the button on the Info form is actually a ```<span>``` element. This was refactored to use a ```title=""``` attribute instead. No errors or warnings were found when retested.
 <h2 align="center"><img src="readme-docs/w3c-validator-html-index.png"></h2>
 
 -   style.css: no errors were found
