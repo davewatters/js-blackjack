@@ -1,9 +1,9 @@
-# Blackjack
+# JS-Blackjack  [ Clone of CI PP2 Blackjack ]
 
 ## A Simple Blackjack game written in JavaScript
 
 
-You can view the Blackjack live site [HERE.](https://davewatters.github.io/blackjack)
+You can view the Blackjack live site [HERE.](https://davewatters.github.io/js-blackjack)
 <br />
 <br />
 <!-- Responsive desgin sample image from http://ami.responsivedesign.is/ -->
@@ -210,11 +210,11 @@ Googe Lighthouse in Chrome DevTools was used after deployment to test the qualit
 ## - Deployment -
 
 ### GitHub Pages
-The live deployed site can be viewed on GitHub Pages [HERE](https://davewatters.github.io/blackjack)
+The live deployed site can be viewed on GitHub Pages [HERE](https://davewatters.github.io/js-blackjack)
 
-The Project repository (repo) is at [https://github.com/davewatters/blackjack](https://github.com/davewatters/blackjack)
+The Project repository (repo) is at [https://github.com/davewatters/blackjack](https://github.com/davewatters/js-blackjack)
 
-Note: The project repo was initially generated from the [Code Institute full template](https://github.com/Code-Institute-Org/gitpod-full-template) 
+Note: The project repo was initially generated from [my CI Portfolio Project, Blackjack](hhttps://davewatters.github.io/js-blackjack) 
 
 Deployment of the site to GitHub Pages was done as follows:
 
