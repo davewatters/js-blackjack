@@ -52,7 +52,17 @@ p {
 
 footer {
   align-items: center;
-  font-size: small;
+  font-size: medium;
+}
+
+.copyright-msg {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-bottom: .5rem;
+}
+
+.social-link {
+  color: black;
 }
 
 .btn {
